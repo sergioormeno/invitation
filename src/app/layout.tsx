@@ -1,13 +1,15 @@
-import '@/styles/globals.css'; // gracias al alias @/*
-// Ejemplo: importar fuente Inter (puedes usar cualquier otra)
-import { Inter } from 'next/font/google';
+import "@/styles/globals.css";
+import { Playfair_Display } from "next/font/google";
 
-const inter = Inter({ subsets: ['latin'] });
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  display: "swap",
+});
 
-// Metadatos opcionales para SEO
+// Metadatos opcionales
 export const metadata = {
-  title: 'Invitación de Boda',
-  description: '¡Nos Casamos!',
+  title: "Invitación de Boda - Estilo Café y Beige",
+  description: "Invitación refinada en tonos café y beige",
 };
 
 export default function RootLayout({
@@ -17,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body className={inter.className}>
+      <body className={playfair.className}>
         {children}
       </body>
     </html>
