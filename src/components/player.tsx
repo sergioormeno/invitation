@@ -16,7 +16,6 @@ export default function FloatingMusicPlayer() {
     if (!audioElement) return;
 
     audioElement.autoplay = true;
-    audioElement.playsInline = true;
     audioElement.muted = true; // Empieza silenciado para evitar bloqueo
 
     audioElement
