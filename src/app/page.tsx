@@ -1,102 +1,121 @@
-import Image from "next/image";
+// src/app/page.tsx
+"use client";
 
-export default function Home() {
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+
+export default function Page() {
+  const [rsvp, setRsvp] = useState<string | null>(null);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen w-full flex flex-col items-center bg-gray-50 text-gray-800">
+      {/* Sección Hero */}
+      <section
+        className="w-full h-screen bg-center bg-cover flex flex-col justify-center items-center relative"
+        style={{
+          backgroundImage:
+            "url('https://via.placeholder.com/1200x800?text=Imagen+de+Fondo')",
+        }}
+      >
+        <div className="bg-black bg-opacity-50 absolute top-0 left-0 w-full h-full"></div>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          className="z-10 text-center text-white p-4"
+        >
+          <h1 className="text-4xl md:text-6xl font-bold mb-4">
+            ¡Nos Casamos!
+          </h1>
+          <p className="text-2xl">Sergio & Valentina</p>
+          <p className="mt-4 text-lg md:text-xl">
+            12 de Junio, 2025 • Lugar: Viña del Mar
+          </p>
+        </motion.div>
+      </section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Sección Información Principal */}
+      <section className="-mt-16 md:-mt-32 max-w-3xl w-full p-4 md:p-8 text-center z-20">
+        <div className="bg-white p-8 rounded-2xl shadow-xl">
+          <h2 className="text-2xl md:text-3xl font-semibold text-pink-600">
+            Detalles del Evento
+          </h2>
+          <p className="mt-4">
+            Nos encantaría compartir este día tan especial con ustedes.
+            La ceremonia se llevará a cabo en la iglesia Nuestra Señora de las Flores
+            a las 17:00 hrs, seguida de una recepción en el salón principal.
+          </p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </section>
+
+      {/* Sección Mensaje / Historia */}
+      <section className="max-w-4xl w-full p-4 md:p-8 text-center">
+        <div className="bg-white p-8 rounded-2xl shadow-xl">
+          <h3 className="text-xl md:text-2xl font-semibold text-gray-700">
+            Nuestra Historia
+          </h3>
+          <p className="mt-4 leading-relaxed">
+            Todo comenzó con una mirada cómplice en una cafetería, y con el tiempo
+            fuimos descubriendo que cada momento compartido hacía crecer nuestro amor.
+            Hoy, queremos dar el siguiente paso y celebrarlo con quienes más queremos.
+          </p>
+        </div>
+      </section>
+
+      {/* Sección Mapa / Ubicación (Opcional) */}
+      <section className="max-w-4xl w-full p-4 md:p-8 text-center">
+        <div className="bg-white p-8 rounded-2xl shadow-xl">
+          <h3 className="text-xl md:text-2xl font-semibold text-gray-700 mb-4">
+            ¿Dónde nos Encontramos?
+          </h3>
+          <iframe
+            className="w-full h-64 rounded-lg"
+            src="https://www.google.com/maps/embed?..."
+            allowFullScreen={false}
+            loading="lazy"
+          ></iframe>
+          <p className="mt-4 text-sm text-gray-500">
+            Ubicación referencial para el evento
+          </p>
+        </div>
+      </section>
+
+      {/* Sección RSVP */}
+      <section className="max-w-2xl w-full p-4 md:p-8 text-center">
+        <div className="bg-white p-8 rounded-2xl shadow-xl">
+          <h2 className="text-2xl md:text-3xl font-semibold text-pink-600">
+            ¡Confirma tu Asistencia!
+          </h2>
+          <div className="mt-6 flex flex-col md:flex-row justify-center gap-4">
+            <button
+              onClick={() => setRsvp('Sí, asistiré')}
+              className="px-6 py-3 bg-green-500 text-white rounded-full shadow hover:bg-green-600 transition"
+            >
+              Sí, asistiré
+            </button>
+            <button
+              onClick={() => setRsvp('No podré ir')}
+              className="px-6 py-3 bg-red-500 text-white rounded-full shadow hover:bg-red-600 transition"
+            >
+              No podré ir
+            </button>
+          </div>
+          {rsvp && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="mt-4 text-lg text-gray-700"
+            >
+              ¡Gracias por tu respuesta! ({rsvp})
+            </motion.div>
+          )}
+        </div>
+      </section>
+
+      {/* Sección Footer */}
+      <footer className="w-full bg-white p-4 text-center text-sm text-gray-500">
+        <p>© 2025 Sergio & Valentina — ¡Nos vemos el gran día!</p>
       </footer>
     </div>
   );
