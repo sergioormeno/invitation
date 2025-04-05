@@ -1,26 +1,113 @@
+/* 
+   Usando la forma antigua de importar Tailwind. 
+   Úsalo sólo si tu proyecto está configurado para ello. 
+*/
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque&display=swap');
+
+
 @import "tailwindcss";
 
+/* ===============================
+   Variables de color globales
+   =============================== */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-bg: #f7f0e7;
+  --color-text: #5c4033;
+  --color-accent: #8b6a4e;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.font-great-vibes {
+  font-family: 'Great Vibes', cursive;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.font-great-vibes {
+  font-family: 'Great Vibes', cursive;
 }
 
+/* ===============================
+   Estilos globales
+   =============================== */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  margin: 0;
+  padding: 0;
 }
+
+/* ===============================
+   Clases utilitarias personalizadas
+   =============================== */
+
+/* Título principal */
+.title {
+  font-size: 2rem; /* Ajusta a gusto */
+  font-weight: 700;
+  text-align: center;
+  color: var(--color-text);
+}
+
+/* Subtítulo */
+.subtitle {
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-align: center;
+  color: var(--color-text);
+}
+
+/* Párrafos */
+.paragraph {
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--color-text);
+}
+
+/* Sección contenedora */
+.section {
+  width: 100%;
+  padding: 4rem 1rem;
+  background-color: var(--color-bg);
+}
+
+/* Botón principal */
+.btn-primary {
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: var(--color-accent);
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Botón alternativo */
+.btn-secondary {
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #b46a55; /* Tono café rojizo */
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.btn-secondary:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Footer */
+.footer-text {
+  font-size: 0.875rem;
+  text-align: center;
+  color: var(--color-text);
+  padding: 1.5rem 0;
+}
+
+/* 
+   Puedes seguir añadiendo tus propias clases personalizadas
+   como lo hacías anteriormente con la antigua configuración.
+*/
