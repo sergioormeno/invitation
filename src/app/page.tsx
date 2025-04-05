@@ -4,15 +4,15 @@ import CountdownTimer from "@/components/timer";
 import FloatingMusicPlayer from "@/components/player";
 import HeroSection from "@/components/hero";
 import Location from "@/components/location";
-
+import { Suspense } from "react";
 
 export default function Home() {
   return (
     <div className="min-h-screen w-full bg-[var(--color-bg)] text-[var(--color-text)] font-sans">
       {/* Hero con imagen de fondo */}
-      
+      <Suspense fallback={<div className="text-center py-12">Cargando...</div>}>
       <HeroSection />
-
+      </Suspense>
       {/* Contador regresivo */}
       <section className="py-16 px-4 md:px-8 text-center">
         <CountdownTimer />
