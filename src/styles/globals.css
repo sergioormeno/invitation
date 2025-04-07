@@ -1,24 +1,17 @@
-/* 
-   Usando la forma antigua de importar Tailwind. 
-   Úsalo sólo si tu proyecto está configurado para ello. 
-*/
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque&display=swap');
-
-
 @import "tailwindcss";
 
 /* ===============================
-   Variables de color globales
+   Variables de color globales (paleta aclarada)
    =============================== */
 :root {
-  --color-bg: #f7f0e7;
-  --color-text: #5c4033;
-  --color-accent: #8b6a4e;
-}
-
-.font-great-vibes {
-  font-family: 'Great Vibes', cursive;
+  --color-bg: #D8D2C6; /* base neutra más clara */
+  --color-text: #6B756B; /* gris verdoso más suave */
+  --color-accent: #A17766; /* acento café rojizo aclarado */
+  --color-soft: #D2BCA2; /* tono suave complementario más claro */
+  --color-muted: #A8A89F; /* texto secundario aclarado */
+  --color-deep: #8B9187; /* fondo más profundo suavizado */
 }
 
 .font-great-vibes {
@@ -39,16 +32,13 @@ body {
 /* ===============================
    Clases utilitarias personalizadas
    =============================== */
-
-/* Título principal */
 .title {
-  font-size: 2rem; /* Ajusta a gusto */
+  font-size: 2rem;
   font-weight: 700;
   text-align: center;
   color: var(--color-text);
 }
 
-/* Subtítulo */
 .subtitle {
   font-size: 1.25rem;
   font-weight: 500;
@@ -56,7 +46,6 @@ body {
   color: var(--color-text);
 }
 
-/* Párrafos */
 .paragraph {
   font-size: 1rem;
   line-height: 1.5;
@@ -64,14 +53,12 @@ body {
   color: var(--color-text);
 }
 
-/* Sección contenedora */
 .section {
   width: 100%;
   padding: 4rem 1rem;
   background-color: var(--color-bg);
 }
 
-/* Botón principal */
 .btn-primary {
   padding: 0.75rem 1.5rem;
   border-radius: 9999px;
@@ -85,13 +72,12 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* Botón alternativo */
 .btn-secondary {
   padding: 0.75rem 1.5rem;
   border-radius: 9999px;
   font-weight: 600;
   color: #ffffff;
-  background-color: #b46a55; /* Tono café rojizo */
+  background-color: var(--color-soft);
   transition: box-shadow 0.2s ease-in-out;
 }
 
@@ -99,15 +85,9 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* Footer */
 .footer-text {
   font-size: 0.875rem;
   text-align: center;
-  color: var(--color-text);
+  color: var(--color-muted);
   padding: 1.5rem 0;
 }
-
-/* 
-   Puedes seguir añadiendo tus propias clases personalizadas
-   como lo hacías anteriormente con la antigua configuración.
-*/

@@ -4,7 +4,11 @@ import CountdownTimer from "@/components/timer";
 import FloatingMusicPlayer from "@/components/player";
 import HeroSection from "@/components/hero";
 import Location from "@/components/location";
+import ScrollButton from "@/components/scroller";
+import DressCode from "@/components/dresscode";
+
 import { Suspense } from "react";
+import GallerySection from "@/components/gallery";
 
 export default function Home() {
   return (
@@ -13,12 +17,8 @@ export default function Home() {
       <Suspense fallback={<div className="text-center py-12">Cargando...</div>}>
       <HeroSection />
       </Suspense>
-      {/* Contador regresivo */}
-      <section className="py-16 px-4 md:px-8 text-center">
-        <CountdownTimer />
-      </section>
-
-      {/* Detalles del evento */}
+      <CountdownTimer />
+      <GallerySection/>
       <Location />
       <section className="py-16 px-4 md:px-8 text-center">
         <h2 className="text-3xl font-bold mb-4 text-[var(--color-text)]">Detalles del Evento</h2>
@@ -26,7 +26,7 @@ export default function Home() {
           La ceremonia se llevará a cabo en la iglesia Nuestra Señora de las Flores a las 17:00 hrs, seguida de una recepción en el salón principal. ¡Nos encantaría que nos acompañes!
         </p>
       </section>
-
+      <DressCode />
       {/* Confirmación de asistencia */}
       <section className="py-16 px-4 md:px-8 text-center">
         <h2 className="text-3xl font-bold mb-6 text-[var(--color-text)]">Confirma tu Asistencia</h2>
@@ -43,6 +43,7 @@ export default function Home() {
 
       {/* Reproductor de música flotante */}
       <FloatingMusicPlayer />
+      <ScrollButton />
     </div>
   );
 }

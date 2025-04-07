@@ -1,18 +1,26 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { useSearchParams } from "next/navigation";
 
 export default function HeroSection() {
   const searchParams = useSearchParams();
   const guestName = searchParams.get("guest");
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]); // efecto parallax leve
 
   return (
     <section
-      className="relative h-screen flex items-center justify-center bg-cover bg-center px-4 md:px-8"
-      style={{ backgroundImage: "url('/img/loves.avif')" }}
+      ref={ref}
+      className="relative h-screen flex items-center justify-center bg-cover bg-center px-4 md:px-8 overflow-hidden"
     >
-      <div className="absolute inset-0 bg-[var(--color-text)]/20" />
+      <motion.div
+        style={{ y, backgroundImage: "url('/img/loves.avif')" }}
+        className="absolute inset-0 bg-cover bg-center"
+      />
+      <div className="absolute inset-0 bg-[var(--color-text)]/20 z-0" />
 
       <motion.div
         className="relative z-10 text-center space-y-4 max-w-3xl"
