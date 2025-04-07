@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 
 export default function DressCode() {
   return (
-    <section className="w-full bg-white text-[var(--color-deep)] py-16 px-4 md:px-8">
+    <section className="w-full bg-white text-[var(--color-deep)] spectral-semibold py-16 px-4 md:px-8">
       <motion.div
         className="w-full max-w-5xl mx-auto text-center space-y-4"
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 80 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
         viewport={{ once: true }}
       >
         {/* Título */}

@@ -6,9 +6,11 @@ import HeroSection from "@/components/hero";
 import Location from "@/components/location";
 import ScrollButton from "@/components/scroller";
 import DressCode from "@/components/dresscode";
-
+import SpotifyPlaylistSection from "@/components/spotify";
 import { Suspense } from "react";
 import GallerySection from "@/components/gallery";
+
+
 
 export default function Home() {
   return (
@@ -16,16 +18,10 @@ export default function Home() {
       {/* Hero con imagen de fondo */}
       <Suspense fallback={<div className="text-center py-12">Cargando...</div>}>
       <HeroSection />
-      </Suspense>
       <CountdownTimer />
+      </Suspense>
       <GallerySection/>
       <Location />
-      <section className="py-16 px-4 md:px-8 text-center">
-        <h2 className="text-3xl font-bold mb-4 text-[var(--color-text)]">Detalles del Evento</h2>
-        <p className="text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-          La ceremonia se llevará a cabo en la iglesia Nuestra Señora de las Flores a las 17:00 hrs, seguida de una recepción en el salón principal. ¡Nos encantaría que nos acompañes!
-        </p>
-      </section>
       <DressCode />
       {/* Confirmación de asistencia */}
       <section className="py-16 px-4 md:px-8 text-center">
@@ -37,11 +33,13 @@ export default function Home() {
       </section>
 
       {/* Pie de página */}
+      <SpotifyPlaylistSection />
       <footer className="text-center py-6 text-sm text-[var(--color-text)]">
         <p>© 2025 Sergio & Valentina — ¡Nos vemos el gran día!</p>
       </footer>
 
       {/* Reproductor de música flotante */}
+
       <FloatingMusicPlayer />
       <ScrollButton />
     </div>

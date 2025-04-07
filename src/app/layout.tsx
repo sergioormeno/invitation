@@ -8,8 +8,30 @@ const playfair = Playfair_Display({
 
 // Metadatos opcionales
 export const metadata = {
-  title: "Invitación de Boda - Estilo Café y Beige",
-  description: "Invitación refinada en tonos café y beige",
+  title: "Sergio & Valentina – Nuestra Boda",
+  description: "¡Estás invitado a celebrar el amor de Sergio & Valentina! Descubre todos los detalles del gran día.",
+  openGraph: {
+    title: "Sergio & Valentina – Nuestra Boda",
+    description: "¡Estás invitado a celebrar el amor de Sergio & Valentina!",
+    url: "https://www.matrisergioyvalentina.com", // reemplaza con tu dominio real
+    siteName: "Boda Sergio & Valentina",
+    images: [
+      {
+        url: "url('/img/loves.avif')", // la imagen del Hero (ver paso 2)
+        width: 1200,
+        height: 630,
+        alt: "Invitación de matrimonio Sergio & Valentina",
+      },
+    ],
+    locale: "es_CL",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sergio & Valentina – Nuestra Boda",
+    description: "¡Estás invitado a nuestro gran día!",
+    images: ["url('/img/loves.avif')"],
+  },
 };
 
 export default function RootLayout({
@@ -25,3 +47,4 @@ export default function RootLayout({
     </html>
   );
 }
+

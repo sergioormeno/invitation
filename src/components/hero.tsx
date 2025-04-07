@@ -9,7 +9,7 @@ export default function HeroSection() {
   const guestName = searchParams.get("guest");
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]); // efecto parallax leve
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "70%"]); // efecto parallax leve
 
   return (
     <section
@@ -28,15 +28,15 @@ export default function HeroSection() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
       >
-        <h2 className="text-2xl md:text-4xl text-white mb-8">
-          ¡Nos Casamos!
+        <h2 className="text-2xl md:text-4xl text-white mb-8 font-bold font-cinzel-decorative">
+          ¡nos casamos!
         </h2>
 
         <h1 className="text-6xl md:text-8xl text-white font-great-vibes">
           Vale & Sergio
         </h1>
 
-        <h2 className="text-xl md:text-2xl text-white">
+        <h2 className="text-xl md:text-2xl text-white font-cinzel-decorative">
           1 de enero de 2026 · Viña del Mar
         </h2>
 

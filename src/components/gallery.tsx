@@ -24,8 +24,14 @@ export default function GallerySection() {
   };
 
   return (
-    <section className="w-full bg-[var(--color-bg)] text-[var(--color-text)] py-16 px-4">
-      <div className="max-w-6xl mx-auto text-center space-y-8">
+    <section className="w-full bg-white text-[var(--color-text)] spectral-semibold py-16 px-4">
+      <motion.div
+        className="max-w-6xl mx-auto text-center space-y-8"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true }}
+      >
         <h2 className="title">Nuestra Galería</h2>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
@@ -63,7 +69,6 @@ export default function GallerySection() {
                 exit={{ opacity: 0, scale: 0.95 }}
               />
 
-              {/* Flechas de navegación */}
               <button
                 className="absolute left-4 top-1/2 -translate-y-1/2 text-white text-3xl font-bold"
                 onClick={(e) => {
@@ -85,7 +90,7 @@ export default function GallerySection() {
             </motion.div>
           )}
         </AnimatePresence>
-      </div>
+      </motion.div>
     </section>
   );
 }

@@ -30,20 +30,20 @@ export default function Countdown() {
   }, []);
 
   return (
-    <section className="w-full bg-[var(--color-bg)] text-[var(--color-text)] py-16 px-4">
+    <section className="w-full bg-[var(--color-bg)] text-[var(--color-text)] spectral-semibold py-14 px-4">
       <motion.div
         className="w-full max-w-6xl mx-auto text-center space-y-6"
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 80 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
         viewport={{ once: true }}
       >
-        <h2 className="title">Faltan...</h2>
-        <div className="flex flex-wrap justify-center gap-6">
+        <h3 className="title text-3xl">Faltan...</h3>
+        <div className="flex flex-wrap justify-center gap-1">
           {Object.entries(timeLeft).map(([unit, value]) => (
-            <div key={unit} className="flex flex-col items-center min-w-[80px]">
-              <span className="text-4xl sm:text-5xl font-bold text-[var(--color-accent)]">{value}</span>
-              <span className="text-sm sm:text-base uppercase tracking-wide text-[var(--color-deep)]">{unit}</span>
+            <div key={unit} className="flex flex-col items-center xs:min-w-[65px] sm:min-w-[80px]">
+              <span className="text-3xl sm:text-5xl font-bold text-[var(--color-accent)]">{value}</span>
+              <span className="text-xs sm:text-base uppercase tracking-wide text-[var(--color-deep)]">{unit}</span>
             </div>
           ))}
         </div>
