@@ -41,7 +41,7 @@ export default function Countdown() {
         <h3 className="title text-3xl">Faltan...</h3>
         <div className="flex flex-wrap justify-center gap-1">
           {Object.entries(timeLeft).map(([unit, value]) => (
-            <div key={unit} className="flex flex-col items-center xs:min-w-[65px] sm:min-w-[80px]">
+            <div key={unit} className="text-center flex flex-col items-center xs:min-w-[65px] sm:min-w-[80px]">
               <span className="text-3xl sm:text-5xl font-bold text-[var(--color-accent)]">{value}</span>
               <span className="text-xs sm:text-base uppercase tracking-wide text-[var(--color-deep)]">{unit}</span>
             </div>
