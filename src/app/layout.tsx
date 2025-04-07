@@ -17,7 +17,7 @@ export const metadata = {
     siteName: "Boda Sergio & Valentina",
     images: [
       {
-        url: "url('/img/loves.avif')", // la imagen del Hero (ver paso 2)
+        url: "https://invitation-git-master-sergios-projects-3264126e.vercel.app/img/loves.avif", // la imagen del Hero (ver paso 2)
         width: 1200,
         height: 630,
         alt: "Invitación de matrimonio Sergio & Valentina",
@@ -30,7 +30,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Sergio & Valentina – Nuestra Boda",
     description: "¡Estás invitado a nuestro gran día!",
-    images: ["url('/img/loves.avif')"],
+    images: ["https://invitation-git-master-sergios-projects-3264126e.vercel.app/img/loves.avif"],
   },
 };
 
