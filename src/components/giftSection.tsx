@@ -77,111 +77,121 @@ export default function GiftSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setActiveModal(null)}
           >
+            {/* Capa clickeable que cierra el modal al hacer clic fuera */}
+            <div
+              className="absolute inset-0 z-0"
+              onClick={() => setActiveModal(null)}
+            ></div>
+
             <motion.div
-              className="bg-white rounded-lg p-6 w-full max-w-3xl max-h-[90vh] overflow-y-auto text-[var(--color-text)] shadow-xl"
+              className="relative z-10 bg-white rounded-lg w-full max-w-3xl text-[var(--color-text)] shadow-xl max-h-[90vh]"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               transition={{ duration: 0.4 }}
-              onClick={(e) => e.stopPropagation()}
             >
-              {activeModal === "transfer" && (
-                <div className="space-y-4">
-                  <h3 className="text-xl font-semibold">Gracias por tu cariño</h3>
-                  <p className="text-sm">Si deseas hacernos un aporte, puedes usar los siguientes datos para transferir:</p>
-                  <div className="bg-[var(--color-bg)] p-4 rounded-md border text-sm space-y-2">
-                    {datos.map((d, i) => (
-                      <div key={i} className="flex justify-between items-center">
-                        <span className="text-left w-full"><strong>{d.label}:</strong> {d.value}</span>
-                        <div className="relative">
-                          <Copy className="w-4 h-4 cursor-pointer" onClick={() => copiarTexto(d.value, i)} />
-                          {copiedIndex === i && (
-                            <span className="absolute -top-6 right-0 text-xs text-white bg-[var(--color-text)] px-2 py-1 rounded">
-                              Copiado
-                            </span>
-                          )}
+              <div className="p-6 overflow-y-auto max-h-[calc(90vh-3rem)] flex flex-col gap-6">
+                {/* Transferencia */}
+                {activeModal === "transfer" && (
+                  <div className="space-y-4">
+                    <h3 className="text-xl font-semibold">Gracias por tu cariño</h3>
+                    <p className="text-sm">Si deseas hacernos un aporte, puedes usar los siguientes datos para transferir:</p>
+                    <div className="bg-[var(--color-bg)] p-4 rounded-md border text-sm space-y-2">
+                      {datos.map((d, i) => (
+                        <div key={i} className="flex justify-between items-center">
+                          <span className="text-left w-full"><strong>{d.label}:</strong> {d.value}</span>
+                          <div className="relative">
+                            <Copy className="w-4 h-4 cursor-pointer" onClick={() => copiarTexto(d.value, i)} />
+                            {copiedIndex === i && (
+                              <span className="absolute -top-6 right-0 text-xs text-white bg-[var(--color-text)] px-2 py-1 rounded">
+                                Copiado
+                              </span>
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {activeModal === "deseo" && (
-                <div className="flex flex-col md:flex-row gap-6 transition-all duration-300 ease-in-out">
-                  <div className="space-y-4 flex-1">
-                    <h3 className="text-xl font-semibold">Elige un deseo para ayudarnos a cumplir</h3>
-                    <ul className="space-y-2">
-                      {deseos.map((d, i) => (
-                        <li
-                          key={i}
-                          className={`p-3 border rounded-md cursor-pointer transition ${selectedDeseo === i ? "bg-[var(--color-accent)] text-white" : "hover:bg-[var(--color-bg)]"}`}
-                          onClick={() => setSelectedDeseo(i)}
-                        >
-                          {d.label} — ${d.amount.toLocaleString()} CLP
-                        </li>
                       ))}
-                    </ul>
+                    </div>
                   </div>
-                  <AnimatePresence>
-                    {selectedDeseo !== null && (
-                      <motion.div
-                        className="space-y-4 flex-1"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 20 }}
-                        transition={{ duration: 0.4 }}
-                      >
-                        <h4 className="text-lg font-semibold">Opciones para regalar</h4>
-                        <div className="bg-[var(--color-bg)] p-4 rounded-md border text-sm space-y-2">
-                          {datos.map((d, i) => (
-                            <div key={i} className="flex justify-between items-center">
-                              <span className="text-left w-full"><strong>{d.label}:</strong> {d.value}</span>
-                              <div className="relative">
-                                <Copy className="w-4 h-4 cursor-pointer" onClick={() => copiarTexto(d.value, i)} />
-                                {copiedIndex === i && (
-                                  <span className="absolute -top-6 right-0 text-xs text-white bg-[var(--color-text)] px-2 py-1 rounded">
-                                    Copiado
-                                  </span>
-                                )}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                        <p className="text-sm">O bien puedes colaborar con tarjeta de crédito aquí:</p>
-                        <a
-                          href={deseos[selectedDeseo].link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="block btn-primary text-center"
+                )}
+
+                {/* Deseos */}
+                {activeModal === "deseo" && (
+                  <div className="flex flex-col md:flex-row gap-6 transition-all duration-300 ease-in-out">
+                    <div className="space-y-4 flex-1">
+                      <h3 className="text-xl font-semibold">Elige un deseo para ayudarnos a cumplir</h3>
+                      <ul className="space-y-2">
+                        {deseos.map((d, i) => (
+                          <li
+                            key={i}
+                            className={`p-3 border rounded-md cursor-pointer transition ${selectedDeseo === i ? "bg-[var(--color-accent)] text-white" : "hover:bg-[var(--color-bg)]"}`}
+                            onClick={() => setSelectedDeseo(i)}
+                          >
+                            {d.label} — ${d.amount.toLocaleString()} CLP
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <AnimatePresence>
+                      {selectedDeseo !== null && (
+                        <motion.div
+                          className="space-y-4 flex-1"
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 20 }}
+                          transition={{ duration: 0.4 }}
                         >
-                          Regalar con Mercado Pago
-                        </a>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              )}
+                          <h4 className="text-lg font-semibold">Opciones para regalar</h4>
+                          <div className="bg-[var(--color-bg)] p-4 rounded-md border text-sm space-y-2">
+                            {datos.map((d, i) => (
+                              <div key={i} className="flex justify-between items-center">
+                                <span className="text-left w-full"><strong>{d.label}:</strong> {d.value}</span>
+                                <div className="relative">
+                                  <Copy className="w-4 h-4 cursor-pointer" onClick={() => copiarTexto(d.value, i)} />
+                                  {copiedIndex === i && (
+                                    <span className="absolute -top-6 right-0 text-xs text-white bg-[var(--color-text)] px-2 py-1 rounded">
+                                      Copiado
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                          <p className="text-sm">O bien puedes colaborar con tarjeta de crédito aquí:</p>
+                          <a
+                            href={deseos[selectedDeseo].link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block btn-primary text-center"
+                          >
+                            Regalar con Mercado Pago
+                          </a>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                )}
 
-              {activeModal === "mensaje" && (
-                <div className="text-center space-y-4">
-                  <h3 className="text-xl font-semibold">¡Nada que preocuparse!</h3>
-                  <p className="text-base">
-                    Tu presencia será el mejor regalo 🎉 <br />
-                    ¡Nos harás felices con tu alegría y energía en la fiesta!
-                  </p>
-                </div>
-              )}
+                {/* Mensaje sin regalo */}
+                {activeModal === "mensaje" && (
+                  <div className="text-center space-y-4">
+                    <h3 className="text-xl font-semibold">¡Nada que preocuparse!</h3>
+                    <p className="text-base">
+                      Tu presencia será el mejor regalo 🎉 <br />
+                      ¡Nos harás felices con tu alegría y energía en la fiesta!
+                    </p>
+                  </div>
+                )}
 
-              <div className="w-full pt-4 text-center">
-                <button
-                  className="btn-secondary px-6 py-2 transition duration-200 hover:bg-[var(--color-accent)] hover:text-white"
-                  onClick={() => setActiveModal(null)}
-                >
-                  Cerrar
-                </button>
+                {/* Botón cerrar */}
+                <div className="w-full pt-2 text-center">
+                  <button
+                    className="btn-secondary px-6 py-2 transition duration-200 hover:bg-[var(--color-accent)] hover:text-white"
+                    onClick={() => setActiveModal(null)}
+                  >
+                    Cerrar
+                  </button>
+                </div>
               </div>
             </motion.div>
           </motion.div>
