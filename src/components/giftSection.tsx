@@ -80,7 +80,7 @@ export default function GiftSection() {
             onClick={() => setActiveModal(null)}
           >
             <motion.div
-              className="bg-white rounded-lg p-6 w-full text-[var(--color-text)] shadow-xl overflow-hidden"
+  className="bg-white rounded-lg p-6 w-full max-h-screen overflow-y-auto text-[var(--color-text)] shadow-xl"
               initial={{ scale: 0.8, opacity: 0, width: 400 }}
               animate={{ scale: 1, opacity: 1, width: activeModal === "deseo" && selectedDeseo !== null ? 800 : 400 }}
               exit={{ scale: 0.8, opacity: 0 }}
@@ -174,11 +174,11 @@ export default function GiftSection() {
                   </p>
                 </div>
               )}
-              <div className="w-full pt-2 text-center">
-                <button className="btn-secondary px-4 py-2" onClick={() => setActiveModal(null)}>
-                  Cerrar
-                </button>
-              </div>
+<div className="w-full pt-2 pb-4 text-center">
+  <button className="btn-secondary px-4 py-2" onClick={() => setActiveModal(null)}>
+    Cerrar
+  </button>
+</div>Pf
             </motion.div>
           </motion.div>
         )}
