@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import SongRequestForm from "@/components/song-request-form";
+import SongRequestForm from "@/components/spotify";
 
 export default function ConfirmAttendanceSection() {
   const [showForm, setShowForm] = useState(false);
