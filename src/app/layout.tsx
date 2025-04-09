@@ -32,6 +32,14 @@ export const metadata = {
     description: "¡Estás invitado a nuestro gran día!",
     images: ["https://invitation-git-master-sergios-projects-3264126e.vercel.app/img/loves.jpg"],
   },
+  images: [
+    {
+      url: "https://invitation-git-master-sergios-projects-3264126e.vercel.app/img/loves.jpg", // la imagen del Hero (ver paso 2)
+      width: 1200,
+      height: 630,
+      alt: "Invitación de matrimonio Sergio & Valentina",
+    },
+  ]
 };
 
 export default function RootLayout({

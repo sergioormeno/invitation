@@ -7,8 +7,9 @@ import Location from "@/components/location";
 import ScrollButton from "@/components/scroller";
 import DressCode from "@/components/dresscode";
 import SpotifyPlaylistSection from "@/components/spotify";
-import { Suspense } from "react";
 import GallerySection from "@/components/gallery";
+import GiftSection from "@/components/giftSection";
+import { Suspense } from "react";
 
 
 
@@ -23,8 +24,9 @@ export default function Home() {
       <GallerySection/>
       <Location />
       <DressCode />
+      <GiftSection/>
       {/* Confirmación de asistencia */}
-      <section className="py-16 px-4 md:px-8 text-center">
+      <section className="py-16 px-4 bg-white md:px-8 text-center">
         <h2 className="text-3xl font-bold mb-6 text-[var(--color-text)]">Confirma tu Asistencia</h2>
         <div className="flex flex-col md:flex-row justify-center gap-4">
           <button className="px-6 py-3 rounded-full font-semibold text-white bg-[var(--color-accent)] hover:shadow-lg transition">Sí, asistiré</button>
