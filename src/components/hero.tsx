@@ -12,10 +12,12 @@ export default function HeroSection() {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "70%"]); // efecto parallax leve
 
   return (
-    <section
-      ref={ref}
-      className="relative h-screen flex items-center justify-center bg-cover bg-center px-4 md:px-8 overflow-hidden"
-    >
+<section
+  data-hero
+  ref={ref}
+  className="relative h-screen flex items-center justify-center bg-cover bg-center px-4 md:px-8 overflow-hidden"
+>
+
       <motion.div
         style={{ y, backgroundImage: "url('/img/loves.avif')" }}
         className="absolute inset-0 bg-cover bg-center"

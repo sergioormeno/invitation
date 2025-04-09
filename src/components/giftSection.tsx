@@ -33,6 +33,11 @@ export default function GiftSection() {
     });
   };
 
+  const copiarTodosLosDatos = () => {
+    const texto = datos.map((d) => `${d.label}: ${d.value}`).join("\n");
+    navigator.clipboard.writeText(texto);
+  };
+
   return (
     <section className="w-full bg-[var(--color-bg)] text-[var(--color-text)] py-16 px-4 text-center">
       <motion.div
@@ -101,7 +106,7 @@ export default function GiftSection() {
                       {datos.map((d, i) => (
                         <div key={i} className="flex justify-between items-center">
                           <span className="text-left w-full"><strong>{d.label}:</strong> {d.value}</span>
-                          <div className="relative">
+                          <div className="relative hidden md:inline-flex">
                             <Copy className="w-4 h-4 cursor-pointer" onClick={() => copiarTexto(d.value, i)} />
                             {copiedIndex === i && (
                               <span className="absolute -top-6 right-0 text-xs text-white bg-[var(--color-text)] px-2 py-1 rounded">
@@ -111,6 +116,16 @@ export default function GiftSection() {
                           </div>
                         </div>
                       ))}
+
+                      {/* Botón copiar todos */}
+                      <div className="text-center pt-4">
+                        <button
+                          onClick={copiarTodosLosDatos}
+                          className="btn-primary px-4 py-2 text-sm rounded-full"
+                        >
+                          Copiar todos los datos
+                        </button>
+                      </div>
                     </div>
                   </div>
                 )}
@@ -146,7 +161,7 @@ export default function GiftSection() {
                             {datos.map((d, i) => (
                               <div key={i} className="flex justify-between items-center">
                                 <span className="text-left w-full"><strong>{d.label}:</strong> {d.value}</span>
-                                <div className="relative">
+                                <div className="relative hidden md:inline-flex">
                                   <Copy className="w-4 h-4 cursor-pointer" onClick={() => copiarTexto(d.value, i)} />
                                   {copiedIndex === i && (
                                     <span className="absolute -top-6 right-0 text-xs text-white bg-[var(--color-text)] px-2 py-1 rounded">
