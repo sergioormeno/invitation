@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Gift, Copy } from "lucide-react";
+import CuteBG from "./min/cutebackground";
 
 export default function GiftSection() {
   const [activeModal, setActiveModal] = useState<"transfer" | "deseo" | "mensaje" | null>(null);
@@ -39,7 +40,7 @@ export default function GiftSection() {
   };
 
   return (
-    <section className="w-full bg-[var(--color-bg)] text-[var(--color-text)] py-16 px-4 text-center">
+    <section className="w-full spectral-semibold bg-[var(--color-bg)] text-[var(--color-text)] py-16 px-4 text-center">
       <motion.div
         className="max-w-3xl mx-auto space-y-6"
         initial={{ opacity: 0, y: 50 }}
@@ -78,7 +79,7 @@ export default function GiftSection() {
       <AnimatePresence>
         {(activeModal === "deseo" || activeModal === "transfer" || activeModal === "mensaje") && (
           <motion.div
-            className="fixed inset-0 bg-black bg-opacity-60 z-50 flex items-center justify-center px-4 py-8"
+            className="fixed inset-0 bg-[var(--color-bg)] bg-opacity-60 z-50 flex items-center justify-center px-4 py-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -88,6 +89,7 @@ export default function GiftSection() {
               className="absolute inset-0 z-0"
               onClick={() => setActiveModal(null)}
             ></div>
+            <CuteBG/>
 
             <motion.div
               className="relative z-10 bg-white rounded-lg w-full max-w-3xl text-[var(--color-text)] shadow-xl max-h-[90vh]"

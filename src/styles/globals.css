@@ -109,8 +109,6 @@
   font-style: italic;
 }
 
-
-
 /* ===============================
    Estilos globales
    =============================== */
@@ -184,3 +182,4 @@ body {
   color: var(--color-muted);
   padding: 1.5rem 0;
 }
+

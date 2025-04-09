@@ -9,7 +9,7 @@ export default function HeroSection() {
   const guestName = searchParams.get("guest");
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "70%"]); // efecto parallax leve
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]); // efecto parallax leve
 
   return (
 <section
