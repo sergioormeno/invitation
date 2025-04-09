@@ -17,13 +17,6 @@ export default function GiftSection() {
     { label: "Gran aventura soñada", amount: 400000, link: "https://mpago.la/2CU4neH" }
   ];
 
-  const copiarTexto = (texto: string, index: number) => {
-    navigator.clipboard.writeText(texto).then(() => {
-      setCopiedIndex(index);
-      setTimeout(() => setCopiedIndex(null), 1500);
-    });
-  };
-
   const datos = [
     { label: "Banco", value: "Banco Ejemplo" },
     { label: "Nombre", value: "Sergio & Valentina" },
@@ -32,6 +25,13 @@ export default function GiftSection() {
     { label: "RUT", value: "12.345.678-9" },
     { label: "Email", value: "ejemplo@correo.com" }
   ];
+
+  const copiarTexto = (texto: string, index: number) => {
+    navigator.clipboard.writeText(texto).then(() => {
+      setCopiedIndex(index);
+      setTimeout(() => setCopiedIndex(null), 1500);
+    });
+  };
 
   return (
     <section className="w-full bg-[var(--color-bg)] text-[var(--color-text)] py-16 px-4 text-center">
@@ -73,113 +73,116 @@ export default function GiftSection() {
       <AnimatePresence>
         {(activeModal === "deseo" || activeModal === "transfer" || activeModal === "mensaje") && (
           <motion.div
-            className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 px-4"
+            className="fixed inset-0 bg-black bg-opacity-60 z-50 overflow-y-auto px-4 py-8 flex justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setActiveModal(null)}
           >
-            <motion.div
-  className="bg-white rounded-lg p-6 w-full max-h-screen overflow-y-auto text-[var(--color-text)] shadow-xl"
-              initial={{ scale: 0.8, opacity: 0, width: 400 }}
-              animate={{ scale: 1, opacity: 1, width: activeModal === "deseo" && selectedDeseo !== null ? 800 : 400 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ duration: 0.4 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              {activeModal === "transfer" && (
-                <div className="space-y-4">
-                  <h3 className="text-xl font-semibold">Gracias por tu cariño</h3>
-                  <p className="text-sm">Si deseas hacernos un aporte, puedes usar los siguientes datos para transferir:</p>
-                  <div className="bg-[var(--color-bg)] p-4 rounded-md border text-sm space-y-2">
-                    {datos.map((d, i) => (
-                      <div key={i} className="flex justify-between items-center">
-                        <span className="text-left w-full"><strong>{d.label}:</strong> {d.value}</span>
-                        <div className="relative">
-                          <Copy className="w-4 h-4 cursor-pointer" onClick={() => copiarTexto(d.value, i)} />
-                          {copiedIndex === i && (
-                            <span className="absolute -top-6 right-0 text-xs text-white bg-[var(--color-text)] px-2 py-1 rounded">
-                              Copiado
-                            </span>
-                          )}
+            <div className="flex items-start justify-center min-h-full w-full max-w-3xl">
+              <motion.div
+                className="bg-white rounded-lg p-6 w-full text-[var(--color-text)] shadow-xl overflow-y-auto max-h-[90vh]"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                transition={{ duration: 0.4 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {activeModal === "transfer" && (
+                  <div className="space-y-4">
+                    <h3 className="text-xl font-semibold">Gracias por tu cariño</h3>
+                    <p className="text-sm">Si deseas hacernos un aporte, puedes usar los siguientes datos para transferir:</p>
+                    <div className="bg-[var(--color-bg)] p-4 rounded-md border text-sm space-y-2">
+                      {datos.map((d, i) => (
+                        <div key={i} className="flex justify-between items-center">
+                          <span className="text-left w-full"><strong>{d.label}:</strong> {d.value}</span>
+                          <div className="relative">
+                            <Copy className="w-4 h-4 cursor-pointer" onClick={() => copiarTexto(d.value, i)} />
+                            {copiedIndex === i && (
+                              <span className="absolute -top-6 right-0 text-xs text-white bg-[var(--color-text)] px-2 py-1 rounded">
+                                Copiado
+                              </span>
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {activeModal === "deseo" && (
-                <div className="flex flex-col md:flex-row gap-6 transition-all duration-300 ease-in-out">
-                  <div className="space-y-4 flex-1">
-                    <h3 className="text-xl font-semibold">Elige un deseo para ayudarnos a cumplir</h3>
-                    <ul className="space-y-2">
-                      {deseos.map((d, i) => (
-                        <li
-                          key={i}
-                          className={`p-3 border rounded-md cursor-pointer transition ${selectedDeseo === i ? "bg-[var(--color-accent)] text-white" : "hover:bg-[var(--color-bg)]"}`}
-                          onClick={() => setSelectedDeseo(i)}
-                        >
-                          {d.label} — ${d.amount.toLocaleString()} CLP
-                        </li>
                       ))}
-                    </ul>
+                    </div>
                   </div>
-                  <AnimatePresence>
-                    {selectedDeseo !== null && (
-                      <motion.div
-                        className="space-y-4 flex-1"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 20 }}
-                        transition={{ duration: 0.4 }}
-                      >
-                        <h4 className="text-lg font-semibold">Opciones para regalar</h4>
-                        <div className="bg-[var(--color-bg)] p-4 rounded-md border text-sm space-y-2">
-                          {datos.map((d, i) => (
-                            <div key={i} className="flex justify-between items-center">
-                              <span className="text-left w-full"><strong>{d.label}:</strong> {d.value}</span>
-                              <div className="relative">
-                                <Copy className="w-4 h-4 cursor-pointer" onClick={() => copiarTexto(d.value, i)} />
-                                {copiedIndex === i && (
-                                  <span className="absolute -top-6 right-0 text-xs text-white bg-[var(--color-text)] px-2 py-1 rounded">
-                                    Copiado
-                                  </span>
-                                )}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                        <p className="text-sm">O bien puedes colaborar con tarjeta de crédito aquí:</p>
-                        <a
-                          href={deseos[selectedDeseo].link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="block btn-primary text-center"
-                        >
-                          Regalar con Mercado Pago
-                        </a>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              )}
+                )}
 
-              {activeModal === "mensaje" && (
-                <div className="text-center space-y-4">
-                  <h3 className="text-xl font-semibold">¡Nada que preocuparse!</h3>
-                  <p className="text-base">
-                    Tu presencia será el mejor regalo 🎉 <br />
-                    ¡Nos harás felices con tu alegría y energía en la fiesta!
-                  </p>
+                {activeModal === "deseo" && (
+                  <div className="flex flex-col md:flex-row gap-6 transition-all duration-300 ease-in-out">
+                    <div className="space-y-4 flex-1">
+                      <h3 className="text-xl font-semibold">Elige un deseo para ayudarnos a cumplir</h3>
+                      <ul className="space-y-2">
+                        {deseos.map((d, i) => (
+                          <li
+                            key={i}
+                            className={`p-3 border rounded-md cursor-pointer transition ${selectedDeseo === i ? "bg-[var(--color-accent)] text-white" : "hover:bg-[var(--color-bg)]"}`}
+                            onClick={() => setSelectedDeseo(i)}
+                          >
+                            {d.label} — ${d.amount.toLocaleString()} CLP
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <AnimatePresence>
+                      {selectedDeseo !== null && (
+                        <motion.div
+                          className="space-y-4 flex-1"
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 20 }}
+                          transition={{ duration: 0.4 }}
+                        >
+                          <h4 className="text-lg font-semibold">Opciones para regalar</h4>
+                          <div className="bg-[var(--color-bg)] p-4 rounded-md border text-sm space-y-2">
+                            {datos.map((d, i) => (
+                              <div key={i} className="flex justify-between items-center">
+                                <span className="text-left w-full"><strong>{d.label}:</strong> {d.value}</span>
+                                <div className="relative">
+                                  <Copy className="w-4 h-4 cursor-pointer" onClick={() => copiarTexto(d.value, i)} />
+                                  {copiedIndex === i && (
+                                    <span className="absolute -top-6 right-0 text-xs text-white bg-[var(--color-text)] px-2 py-1 rounded">
+                                      Copiado
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                          <p className="text-sm">O bien puedes colaborar con tarjeta de crédito aquí:</p>
+                          <a
+                            href={deseos[selectedDeseo].link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block btn-primary text-center"
+                          >
+                            Regalar con Mercado Pago
+                          </a>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                )}
+
+                {activeModal === "mensaje" && (
+                  <div className="text-center space-y-4">
+                    <h3 className="text-xl font-semibold">¡Nada que preocuparse!</h3>
+                    <p className="text-base">
+                      Tu presencia será el mejor regalo 🎉 <br />
+                      ¡Nos harás felices con tu alegría y energía en la fiesta!
+                    </p>
+                  </div>
+                )}
+
+                <div className="w-full pt-4 text-center">
+                  <button className="btn-secondary px-4 py-2" onClick={() => setActiveModal(null)}>
+                    Cerrar
+                  </button>
                 </div>
-              )}
-<div className="w-full pt-2 pb-4 text-center">
-  <button className="btn-secondary px-4 py-2" onClick={() => setActiveModal(null)}>
-    Cerrar
-  </button>
-</div>Pf
-            </motion.div>
+              </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
