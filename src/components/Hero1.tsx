@@ -3,7 +3,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import LoadingHeart from "./min/LoadingCute";
+import LoadingHeart from "./min/LoadingCute1";
 
 export default function HeroSection() {
   const ref = useRef(null);

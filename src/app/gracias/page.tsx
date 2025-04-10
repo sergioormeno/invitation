@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Gift } from "lucide-react";
 import Link from "next/link";
-import CuteBG from "@/components/min/CuteBackground";
+import CuteBG from "@/components/min/CuteBackground1";
 
 export default function Gracias() {
   useEffect(() => {

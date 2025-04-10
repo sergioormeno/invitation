@@ -3,9 +3,9 @@
 import { useState, Suspense, lazy } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Gift } from "lucide-react";
-import CuteBG from "@/components/min/CuteBackground";
+import CuteBG from "@/components/min/CuteBackground1";
 
-const GiftModal = lazy(() => import("@/components/min/GiftModal"));
+const GiftModal = lazy(() => import("@/components/min/GiftModal1"));
 
 export default function GiftSection() {
   const [activeModal, setActiveModal] = useState<"transfer" | "deseo" | "mensaje" | null>(null);
