@@ -19,15 +19,21 @@ export default function Countdown() {
     return timeLeft;
   };
 
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+  const [timeLeft, setTimeLeft] = useState<Record<string, number>>({});
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true); // Marca cuando ya está en cliente
+    setTimeLeft(calculateTimeLeft());
+
     const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
 
     return () => clearInterval(timer);
   }, []);
+
+  if (!mounted) return null; // Evita render SSR hasta que esté montado
 
   return (
     <section className="w-full bg-[var(--color-bg)] text-[var(--color-text)] spectral-semibold py-14 px-4">
