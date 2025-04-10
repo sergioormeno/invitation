@@ -9,15 +9,16 @@ export default function HeroSection() {
   const guestName = searchParams.get("guest");
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]); // efecto parallax leve
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
 
   return (
-<section
-  data-hero
-  ref={ref}
-  className="relative h-screen flex items-center justify-center bg-cover bg-center px-4 md:px-8 overflow-hidden"
->
-
+    <section
+      data-hero
+      ref={ref}
+      className="relative min-h-screen flex items-center justify-center bg-cover bg-center px-4 md:px-8 overflow-hidden"
+      style={{ contentVisibility: "auto", containIntrinsicSize: "1000px" }}
+    >
+      {/* Preload optimizado por layout/meta, pero aquí optimizamos el fondo */}
       <motion.div
         style={{ y, backgroundImage: "url('/img/loves.avif')" }}
         className="absolute inset-0 bg-cover bg-center"
