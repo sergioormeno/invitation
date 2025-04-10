@@ -12,7 +12,7 @@ import GiftSection from "@/components/giftSection";
 import { Suspense } from "react";
 import ConfirmAttendanceSection from "@/components/AttendanceConfirm1";
 import WelcomeSection from "@/components/WelcomeSection1";
-import LoadingHeart from "@/components/min/LoadingCute1";
+import LoadingHeart from "@/components/min/LoadingCute";
 
 export default function Home() {
   return (
