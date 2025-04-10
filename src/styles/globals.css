@@ -13,6 +13,7 @@
   --color-soft: #D2BCA2; /* tono suave complementario más claro */
   --color-muted: #A8A89F; /* texto secundario aclarado */
   --color-deep: #8B9187; /* fondo más profundo suavizado */
+  --color-bg-alt: #EFEAE3;
 }
 
 .font-great-vibes {

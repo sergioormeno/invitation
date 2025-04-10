@@ -4,6 +4,7 @@ import { useState, useEffect, Suspense, lazy } from "react";
 import { motion } from "framer-motion";
 import { Gift } from "lucide-react";
 import { createPortal } from "react-dom";
+import LoadingHeart from "../min/LoadingCute";
 
 const GiftModal = lazy(() => import("@/components/min/GiftModal"));
 
@@ -65,7 +66,7 @@ export default function GiftSection() {
 
       {isClient && activeModal !== null && document.getElementById("portal") &&
         createPortal(
-          <Suspense fallback={<div className="text-center py-8">Cargando detalles...</div>}>
+          <Suspense fallback={<div className="text-center py-12"><LoadingHeart /></div>}>
             <GiftModal
               mode={activeModal}
               onClose={() => setActiveModal(null)}

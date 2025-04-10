@@ -1,57 +1,48 @@
-// components/welcomeSection.tsx
+// Archivo: components/WelcomeSection.tsx
 "use client";
 
-import invitations from "@/data/invitations.json";
 import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import invitations from "@/data/invitations.json";
+
+// Tipo inferido desde las invitaciones
+type Guest = typeof invitations[keyof typeof invitations];
 
 export default function WelcomeSection() {
   const searchParams = useSearchParams();
-  const inviteId = searchParams.get("invite") ?? "";
-  const guestData = invitations[inviteId as keyof typeof invitations];
+  const inviteKey = searchParams.get("invite");
+  const [guestData, setGuestData] = useState<Guest | null>(null);
+
+  useEffect(() => {
+    if (inviteKey && Object.prototype.hasOwnProperty.call(invitations, inviteKey)) {
+      setGuestData(invitations[inviteKey as keyof typeof invitations]);
+    }
+  }, [inviteKey]);
 
   if (!guestData) return null;
 
   return (
-    <section className="section text-center spectral-semibold">
+    <section className="w-full bg-[var(--color-bg-alt)] text-[var(--color-text)] py-12 px-4 text-center spectral-semibold">
       <motion.div
         className="max-w-3xl mx-auto space-y-6"
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: true }}
       >
-        <motion.h2
-          className="title"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          💌 Mensaje para ti
-        </motion.h2>
+        <h2 className="text-2xl sm:text-3xl font-bold text-[var(--color-accent)]">
+         ¡Hola {guestData.guestName}!
+        </h2>
 
-        <motion.p
-          className="subtitle"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          viewport={{ once: true }}
-        >
+        <p className="text-lg">
           {guestData.welcomeMessage}
-        </motion.p>
+        </p>
 
-        <motion.div
-          className="text-base text-[var(--color-deep)] space-y-3"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <p><strong>Invitados permitidos:</strong> {guestData.numGuests}</p>
-          <p><strong>¿Invitación con acompañante?</strong> {guestData.plusOne ? "Sí" : "No"}</p>
-          <p><strong>Recomendación de estadía:</strong><br />{guestData.stayRecommendation}</p>
-        </motion.div>
+        <p className="text-base text-[var(--color-muted)]">
+          Estás invitado con un total de <strong>{guestData.numGuests}</strong> persona(s)
+          {guestData.plusOne && ", incluyendo tu acompañante"}.<br />
+          Recomendación de estadía: {guestData.stayRecommendation} 🏨
+        </p>
       </motion.div>
     </section>
   );

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Suspense, lazy} from "react";
+import LoadingHeart from "./LoadingCute";
 
 const TransferPanel = lazy(() => import("./GiftModalTransfer"));
 const DeseoPanel = lazy(() => import("./GiftModalDeseo"));
@@ -35,7 +36,7 @@ export default function GiftModal({ mode, onClose, CuteBG }: Props) {
         transition={{ duration: 0.4 }}
       >
         <div className="p-6 overflow-y-auto max-h-[calc(90vh-3rem)] flex flex-col gap-6">
-          <Suspense fallback={<p className="text-center">Cargando contenido...</p>}>
+          <Suspense fallback={<div className="text-center py-12"><LoadingHeart /></div>}>
             {mode === "transfer" && <TransferPanel />}
             {mode === "deseo" && <DeseoPanel />}
             {mode === "mensaje" && <MensajePanel />}
