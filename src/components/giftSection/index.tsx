@@ -3,7 +3,7 @@
 import { useState, Suspense, lazy } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Gift } from "lucide-react";
-import CuteBG from "@/components/min/cutebackground";
+import CuteBG from "@/components/min/CuteBackground";
 
 const GiftModal = lazy(() => import("@/components/min/GiftModal"));
 

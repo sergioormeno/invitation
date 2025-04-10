@@ -1,16 +1,16 @@
 "use client";
 
-import CountdownTimer from "@/components/timer";
-import FloatingMusicPlayer from "@/components/player";
-import HeroSection from "@/components/hero";
-import Location from "@/components/location";
-import ScrollButton from "@/components/scroller";
-import DressCode from "@/components/dresscode";
-import SpotifyPlaylistSection from "@/components/spotify";
-import GallerySection from "@/components/gallery";
+import CountdownTimer from "@/components/Timer";
+import FloatingMusicPlayer from "@/components/Player";
+import HeroSection from "@/components/Hero";
+import Location from "@/components/Location";
+import ScrollButton from "@/components/Scroller";
+import DressCode from "@/components/Dresscode";
+import SpotifyPlaylistSection from "@/components/Spotify";
+import GallerySection from "@/components/Gallery";
 import GiftSection from "@/components/giftSection";
 import { Suspense } from "react";
-import ConfirmAttendanceSection from "@/components/attendanceConfirm";
+import ConfirmAttendanceSection from "@/components/AttendanceConfirm";
 
 export default function Home() {
   return (

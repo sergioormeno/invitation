@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle, XCircle } from "lucide-react";
-import SongRequestForm from "@/components/spotify";
+import SongRequestForm from "@/components/Spotify";
 
 export default function ConfirmAttendanceSection() {
   const [showForm, setShowForm] = useState(false);

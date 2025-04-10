@@ -1,24 +1,20 @@
+// components/hero.tsx
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { useSearchParams } from "next/navigation";
 
 export default function HeroSection() {
-  const searchParams = useSearchParams();
-  const guestName = searchParams.get("guest");
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]); // efecto parallax leve
 
   return (
     <section
       data-hero
       ref={ref}
-      className="relative min-h-screen flex items-center justify-center bg-cover bg-center px-4 md:px-8 overflow-hidden"
-      style={{ contentVisibility: "auto", containIntrinsicSize: "1000px" }}
+      className="relative h-screen flex items-center justify-center bg-cover bg-center px-4 md:px-8 overflow-hidden"
     >
-      {/* Preload optimizado por layout/meta, pero aquí optimizamos el fondo */}
       <motion.div
         style={{ y, backgroundImage: "url('/img/loves.avif')" }}
         className="absolute inset-0 bg-cover bg-center"
@@ -42,17 +38,6 @@ export default function HeroSection() {
         <h2 className="text-xl md:text-2xl text-white font-cinzel-decorative">
           1 de enero de 2026 · Viña del Mar
         </h2>
-
-        {guestName && (
-          <motion.p
-            className="text-xl md:text-2xl text-white"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1.1, opacity: 1 }}
-            transition={{ delay: 1.3, duration: 0.6, type: "spring" }}
-          >
-            ¡Hola {decodeURIComponent(guestName)}!
-          </motion.p>
-        )}
       </motion.div>
     </section>
   );

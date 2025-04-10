@@ -31,9 +31,9 @@ export default function GallerySection() {
     >
       <motion.div
         className="max-w-6xl mx-auto text-center space-y-8"
-        initial={{ opacity: 0, y: 50 }}
+        initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.6, delay: 0.1 }}
         viewport={{ once: true }}
       >
         <h2 className="title">Nuestra Galería</h2>
