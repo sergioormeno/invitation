@@ -3,6 +3,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import LoadingHeart from "./min/LoadingCute";
 
 export default function HeroSection() {
   const ref = useRef(null);
@@ -34,7 +35,6 @@ export default function HeroSection() {
         <h1 className="text-6xl md:text-8xl text-white font-great-vibes">
           Vale & Sergio
         </h1>
-
         <h2 className="text-xl md:text-2xl text-white font-cinzel-decorative">
           1 de enero de 2026 · Viña del Mar
         </h2>

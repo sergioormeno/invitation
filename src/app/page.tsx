@@ -11,6 +11,8 @@ import GallerySection from "@/components/Gallery";
 import GiftSection from "@/components/giftSection";
 import { Suspense } from "react";
 import ConfirmAttendanceSection from "@/components/AttendanceConfirm";
+import WelcomeSection from "@/components/WelcomeSection";
+import LoadingHeart from "@/components/min/LoadingCute";
 
 export default function Home() {
   return (
@@ -18,7 +20,8 @@ export default function Home() {
       {/* Hero con imagen de fondo */}
       <HeroSection />
 
-      <Suspense fallback={<div className="text-center py-12">Cargando...</div>}>
+      <Suspense fallback={<div className="text-center py-12"><LoadingHeart /></div>}>
+        <WelcomeSection />
         <CountdownTimer />
       </Suspense>
 
