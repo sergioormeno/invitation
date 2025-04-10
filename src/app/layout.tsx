@@ -50,6 +50,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={playfair.className}>
+      <div id="portal" />
         {children}
       </body>
     </html>

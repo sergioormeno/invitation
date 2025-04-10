@@ -1,11 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Suspense, lazy, useState } from "react";
+import { Suspense, lazy} from "react";
 
 const TransferPanel = lazy(() => import("./GiftModalTransfer"));
 const DeseoPanel = lazy(() => import("./GiftModalDeseo"));
 const MensajePanel = lazy(() => import("./GiftModalMensaje"));
+
+
 
 interface Props {
   mode: "transfer" | "deseo" | "mensaje";
