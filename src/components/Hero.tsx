@@ -1,32 +1,33 @@
-// Archivo: components/hero.tsx
+// Archivo: components/hero.tsx (versión limpia sin props ni searchParams)
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRef } from "react";
+import Image from "next/image";
 
 export default function HeroSection() {
-  const searchParams = useSearchParams();
-  const guestName = searchParams.get("guest");
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
-  const [imageLoaded, setImageLoaded] = useState(false);
-
-  useEffect(() => {
-    const img = new Image();
-    img.src = "/img/loves.avif";
-    img.onload = () => setImageLoaded(true);
-  }, []);
 
   return (
     <section
       data-hero
       ref={ref}
-      className="relative min-h-[100svh] flex items-center justify-center bg-cover bg-center px-4 md:px-8 overflow-hidden"
-      style={{ backgroundImage: imageLoaded ? "url('/img/loves.avif')" : "none" }}
+      className="relative min-h-[100svh] flex items-center justify-center overflow-hidden px-4 md:px-8"
     >
-      <div className="absolute inset-0 bg-[var(--color-text)]/20 z-0" />
+      {/* Imagen de fondo absoluta */}
+      <motion.div className="absolute inset-0 z-0" style={{ y }}>
+        <Image
+          src="/img/loves.avif"
+          alt="Sergio y Valentina fondo"
+          fill
+          priority
+          quality={90}
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-[var(--color-text)]/20" />
+      </motion.div>
 
       <motion.div
         className="relative z-10 text-center space-y-4 max-w-3xl"
@@ -45,17 +46,6 @@ export default function HeroSection() {
         <h2 className="text-xl md:text-2xl text-white font-cinzel-decorative">
           1 de enero de 2026 · Viña del Mar
         </h2>
-
-        {guestName && (
-          <motion.p
-            className="text-xl md:text-2xl text-white"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1.1, opacity: 1 }}
-            transition={{ delay: 1.3, duration: 0.6, type: "spring" }}
-          >
-            ¡Hola {decodeURIComponent(guestName)}!
-          </motion.p>
-        )}
       </motion.div>
     </section>
   );
