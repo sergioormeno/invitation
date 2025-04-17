@@ -1,4 +1,4 @@
-// Archivo: components/hero.tsx (optimizado para precarga de imagen)
+// Archivo: components/hero.tsx (optimizado para precarga de imagen con logo personalizado)
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -12,9 +12,9 @@ export default function HeroSection() {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
-    const preload = new Image();
-    preload.src = "/img/loves.avif";
-    preload.onload = () => setImageLoaded(true);
+    const preloadImage = new window.Image();
+    preloadImage.src = "/img/loves.avif";
+    preloadImage.onload = () => setImageLoaded(true);
   }, []);
 
   return (
@@ -48,9 +48,16 @@ export default function HeroSection() {
           ¡nos casamos!
         </h2>
 
-        <h1 className="text-6xl md:text-8xl text-white font-great-vibes">
-          Vale & Sergio
-        </h1>
+        <div className="flex justify-center">
+          <Image
+            src="/img/herologo.avif"
+            alt="Vale & Sergio"
+            width={600}
+            height={200}
+            priority
+            className="w-[280px] sm:w-[320px] md:w-[400px] lg:w-[480px] h-auto max-w-full"
+          />
+        </div>
 
         <h2 className="text-xl md:text-2xl text-white font-cinzel-decorative">
           1 de enero de 2026 · Viña del Mar
