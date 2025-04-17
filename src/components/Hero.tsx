@@ -1,14 +1,21 @@
-// Archivo: components/hero.tsx (versión limpia sin props ni searchParams)
+// Archivo: components/hero.tsx (optimizado para precarga de imagen)
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 
 export default function HeroSection() {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  useEffect(() => {
+    const preload = new Image();
+    preload.src = "/img/loves.avif";
+    preload.onload = () => setImageLoaded(true);
+  }, []);
 
   return (
     <section
@@ -18,14 +25,16 @@ export default function HeroSection() {
     >
       {/* Imagen de fondo absoluta */}
       <motion.div className="absolute inset-0 z-0" style={{ y }}>
-        <Image
-          src="/img/loves.avif"
-          alt="Sergio y Valentina fondo"
-          fill
-          priority
-          quality={90}
-          className="object-cover"
-        />
+        {imageLoaded && (
+          <Image
+            src="/img/loves.avif"
+            alt="Sergio y Valentina fondo"
+            fill
+            priority
+            quality={90}
+            className="object-cover"
+          />
+        )}
         <div className="absolute inset-0 bg-[var(--color-text)]/20" />
       </motion.div>
 
