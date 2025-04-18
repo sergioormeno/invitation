@@ -1,4 +1,4 @@
-// Archivo: components/hero.tsx (optimizado para precarga de imagen con logo personalizado)
+// Archivo: components/hero.tsx (corregido para evitar salto visual inicial en mobile)
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -14,14 +14,18 @@ export default function HeroSection() {
   useEffect(() => {
     const preloadImage = new window.Image();
     preloadImage.src = "/img/loves.avif";
-    preloadImage.onload = () => setImageLoaded(true);
+    preloadImage.onload = () => {
+      setImageLoaded(true);
+      document.body.classList.remove("prevent-scroll");
+    };
+    document.body.classList.add("prevent-scroll");
   }, []);
 
   return (
     <section
       data-hero
       ref={ref}
-      className="relative min-h-[100svh] flex items-center justify-center overflow-hidden px-4 md:px-8"
+      className={`relative min-h-[100svh] flex items-center justify-center overflow-hidden px-4 md:px-8 transition-opacity duration-500 ${imageLoaded ? "opacity-100" : "opacity-0"}`}
     >
       {/* Imagen de fondo absoluta */}
       <motion.div className="absolute inset-0 z-0" style={{ y }}>
@@ -35,7 +39,7 @@ export default function HeroSection() {
             className="object-cover"
           />
         )}
-        <div className="absolute inset-0 bg-[var(--color-text)]/40" />
+        <div className="absolute inset-0 bg-[var(--color-text)]/20" />
       </motion.div>
 
       <motion.div
