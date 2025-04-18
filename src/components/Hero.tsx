@@ -35,7 +35,7 @@ export default function HeroSection() {
             className="object-cover"
           />
         )}
-        <div className="absolute inset-0 bg-[var(--color-text)]/20" />
+        <div className="absolute inset-0 bg-[var(--color-text)]/40" />
       </motion.div>
 
       <motion.div
