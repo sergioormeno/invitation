@@ -2,8 +2,13 @@
 
 import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
+import { useInvitado } from "@/context/InvitadoContext";
 
 export default function Location() {
+  const { valido, loading } = useInvitado();
+
+  if (loading || !valido) return null;
+
   return (
     <section className="w-full bg-[var(--color-bg)] text-[var(--color-text)] spectral-semibold py-16 px-4">
       <motion.div
@@ -25,11 +30,11 @@ export default function Location() {
         transition={{ duration: 0.6, delay: 0.1 }}
         viewport={{ once: true }}
       >
-        La ceremonia y la recepción se llevará a cabo en el bosque del Hotel Mantagua Village, Seguido de una fiesta en el mismo hotel en el salon principal ¡Nos encantaría que nos acompañes!
+La ceremonia y la recepción se llevará a cabo en el bosque del Hotel Mantagua Village, Seguido de una fiesta en el mismo hotel en el salon principal ¡Nos encantaría que nos acompañes!
       </motion.p>
 
       <div className="flex flex-col md:flex-row gap-12 items-center justify-center">
-      <motion.div
+        <motion.div
           className="w-full md:w-1/2 text-center"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -40,6 +45,7 @@ export default function Location() {
           <p className="text-base mt-2">Ruta Concon hacia Quintero - F-30-E, Concón, Quintero, Valparaíso</p>
           <p className="text-base mt-4">Ceremonia: 17:00 hrs • Recepción posterior</p>
         </motion.div>
+
         <motion.div
           className="w-full md:w-1/2"
           initial={{ opacity: 0, y: 40 }}
@@ -58,8 +64,6 @@ export default function Location() {
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
         </motion.div>
-
-
       </div>
     </section>
   );

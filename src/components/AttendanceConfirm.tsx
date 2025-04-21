@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useSearchParams } from "next/navigation";
-import { guardarAsistencia, obtenerInvitadoPorClave, Invitado } from "@/lib/asistencia";
+import { guardarAsistencia, Invitado } from "@/lib/asistencia";
 import {
   ConfirmModal,
   ConfirmRestrictionForm,
@@ -11,16 +10,14 @@ import {
 } from "@/components/confirm";
 import LoadingHeart from "@/components/min/LoadingCute";
 import CuteBG from "@/components/min/CuteBackground";
+import { useInvitado } from "@/context/InvitadoContext";
 
 const fechaLimite = new Date("2025-12-10T23:59:59");
 
 export default function ConfirmAttendanceSection() {
-  const searchParams = useSearchParams();
-  const inviteKey = searchParams.get("inviteKey");
+  const { invitado, loading: loadingInvitado, valido, inviteKey } = useInvitado();
 
-  const [invitado, setInvitado] = useState<Invitado | null>(null);
   const [estado, setEstado] = useState<"asiste" | "no_asiste" | null>(null);
-
   const [restriccion, setRestriccion] = useState("Ninguna");
   const [llevaPlusOne, setLlevaPlusOne] = useState(false);
   const [plusOneNombre, setPlusOneNombre] = useState("");
@@ -29,32 +26,26 @@ export default function ConfirmAttendanceSection() {
   const [modoEdicion, setModoEdicion] = useState(false);
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [mostrarModalFinal, setMostrarModalFinal] = useState<"asiste" | "no_asiste" | false>(false);
-
   const [loading, setLoading] = useState(false);
 
   const nombre = invitado?.nombre?.split(" ")[0] ?? "Invitado";
   const estaFueraDePlazo = new Date() > fechaLimite;
 
   useEffect(() => {
-    if (!inviteKey) return;
-    setLoading(true)
-    obtenerInvitadoPorClave(inviteKey).then((data) => {
-      if (data) {
-        setLoading(false)
-        setInvitado(data);
-        setEstado(data.confirmacion ?? null);
-        setRestriccion(data.restriccionAlimenticia ?? "Ninguna");
-        if (data.permitePlusOne) {
-          setLlevaPlusOne(data.plusOneAsiste ?? false);
-          setPlusOneNombre(data.plusOneNombre ?? "");
-          setPlusOneRestriccion(data.plusOneRestriccion ?? "Ninguna");
-        }
+    if (invitado) {
+      setEstado(invitado.confirmacion ?? null);
+      setRestriccion(invitado.restriccionAlimenticia ?? "Ninguna");
+      if (invitado.permitePlusOne) {
+        setLlevaPlusOne(invitado.plusOneAsiste ?? false);
+        setPlusOneNombre(invitado.plusOneNombre ?? "");
+        setPlusOneRestriccion(invitado.plusOneRestriccion ?? "Ninguna");
       }
-    });
-  }, [inviteKey]);
+    }
+  }, [invitado]);
 
   const manejarGuardar = async () => {
     if (!inviteKey) return;
+    setLoading(true);
 
     const payload: Partial<Invitado> = {
       confirmacion: "asiste",
@@ -68,6 +59,7 @@ export default function ConfirmAttendanceSection() {
     }
 
     await guardarAsistencia(inviteKey, payload);
+    setLoading(false);
     setEstado("asiste");
     setMostrarFormulario(false);
     setMostrarModalFinal(false);
@@ -76,16 +68,18 @@ export default function ConfirmAttendanceSection() {
 
   const manejarConfirmacionNegativa = async () => {
     if (!inviteKey) return;
-    await guardarAsistencia(inviteKey, {
-      confirmacion: "no_asiste",
-    });
+    setLoading(true);
+
+    await guardarAsistencia(inviteKey, { confirmacion: "no_asiste" });
+    setLoading(false);
     setEstado("no_asiste");
     setMostrarFormulario(false);
     setMostrarModalFinal(false);
     setModoEdicion(false);
   };
 
-  if (!inviteKey) return null;
+  if (loadingInvitado) return <LoadingHeart message="Cargando invitación..." />;
+  if (!valido || !invitado) return null;
 
   return (
     <section className="section text-center relative">
@@ -103,7 +97,7 @@ export default function ConfirmAttendanceSection() {
           Puedes confirmar hasta el <strong>10 de diciembre de 2025</strong>
         </p>
 
-        {loading && <LoadingHeart message="Cargando..." />}
+        {loading && <LoadingHeart message="Guardando tu confirmación..." />}
 
         {!loading && estaFueraDePlazo ? (
           <div className="mt-8 space-y-4">
@@ -141,20 +135,17 @@ export default function ConfirmAttendanceSection() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
               >
-                {invitado && (
-                  <ConfirmRestrictionForm
-                    restriccion={restriccion}
-                    setRestriccion={setRestriccion}
-                    permitePlusOne={invitado.permitePlusOne ?? false}
-                    llevaPlusOne={llevaPlusOne}
-                    setLlevaPlusOne={setLlevaPlusOne}
-                    plusOneNombre={plusOneNombre}
-                    setPlusOneNombre={setPlusOneNombre}
-                    plusOneRestriccion={plusOneRestriccion}
-                    setPlusOneRestriccion={setPlusOneRestriccion}
-                  />
-                )}
-
+                <ConfirmRestrictionForm
+                  restriccion={restriccion}
+                  setRestriccion={setRestriccion}
+                  permitePlusOne={invitado.permitePlusOne ?? false}
+                  llevaPlusOne={llevaPlusOne}
+                  setLlevaPlusOne={setLlevaPlusOne}
+                  plusOneNombre={plusOneNombre}
+                  setPlusOneNombre={setPlusOneNombre}
+                  plusOneRestriccion={plusOneRestriccion}
+                  setPlusOneRestriccion={setPlusOneRestriccion}
+                />
                 <button onClick={() => setMostrarModalFinal("asiste")} className="btn-primary mt-6">
                   Confirmar esta opción
                 </button>
@@ -166,10 +157,10 @@ export default function ConfirmAttendanceSection() {
                 <ConfirmSuccess
                   estado={estado}
                   nombre={nombre}
-                  permitePlusOne={invitado?.permitePlusOne}
-                  plusOneAsiste={invitado?.plusOneAsiste}
-                  plusOneNombre={invitado?.plusOneNombre}
-                  plusOneRestriccion={invitado?.plusOneRestriccion}
+                  permitePlusOne={invitado.permitePlusOne}
+                  plusOneAsiste={invitado.plusOneAsiste}
+                  plusOneNombre={invitado.plusOneNombre}
+                  plusOneRestriccion={invitado.plusOneRestriccion}
                   onEditar={() => setModoEdicion(true)}
                 />
               </motion.div>

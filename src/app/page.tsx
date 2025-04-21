@@ -12,6 +12,7 @@ import GiftSection from "@/components/giftSection";
 import { Suspense } from "react";
 import ConfirmAttendanceSection from "@/components/AttendanceConfirm";
 import LoadingHeart from "@/components/min/LoadingCute";
+import { InvitadoProvider } from "@/context/InvitadoContext";
 
 export default function Home() {
   return (
@@ -26,11 +27,13 @@ export default function Home() {
       <section style={{ contentVisibility: "auto", containIntrinsicSize: "800px" }}>
         <GallerySection />
       </section>
-
-      <section style={{ contentVisibility: "auto", containIntrinsicSize: "600px" }}>
-        <Location />
-      </section>
-
+      <Suspense fallback={<div className="text-center py-12"><LoadingHeart /></div>}>
+        <section style={{ contentVisibility: "auto", containIntrinsicSize: "600px" }}>
+          <InvitadoProvider>
+            <Location />
+          </InvitadoProvider>
+        </section>
+      </Suspense>
       <section style={{ contentVisibility: "auto", containIntrinsicSize: "600px" }}>
         <DressCode />
       </section>
@@ -41,7 +44,9 @@ export default function Home() {
 
       <Suspense fallback={<div className="text-center py-12"><LoadingHeart /></div>}>
         <section style={{ contentVisibility: "auto", containIntrinsicSize: "600px" }}>
-          <ConfirmAttendanceSection />
+          <InvitadoProvider>
+            <ConfirmAttendanceSection />
+          </InvitadoProvider>
         </section>
       </Suspense>
 
