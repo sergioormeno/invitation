@@ -39,9 +39,11 @@ export default function Home() {
         <GiftSection />
       </section>
 
-      <section style={{ contentVisibility: "auto", containIntrinsicSize: "600px" }}>
-        <ConfirmAttendanceSection />
-      </section>
+      <Suspense fallback={<div className="text-center py-12"><LoadingHeart /></div>}>
+        <section style={{ contentVisibility: "auto", containIntrinsicSize: "600px" }}>
+          <ConfirmAttendanceSection />
+        </section>
+      </Suspense>
 
       <footer className="text-center py-6 text-sm text-[var(--color-text)]">
         <p>© 2025 Sergio & Valentina — ¡Nos vemos el gran día!</p>
