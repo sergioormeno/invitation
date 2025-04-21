@@ -21,7 +21,6 @@ export default function Home() {
       <HeroSection />
 
       <Suspense fallback={<div className="text-center py-12"><LoadingHeart /></div>}>
-        <WelcomeSection />
         <CountdownTimer />
       </Suspense>
 

@@ -1,17 +1,25 @@
 {
-    "FD2MGd13": {
-      "guestName": "Camila",
-      "welcomeMessage": "Querida Cami, ¡estamos muy felices de que nos acompañes!",
-      "numGuests": 2,
-      "plusOne": true,
-      "stayRecommendation": "Te recomendamos el hotel Viña La Playa. ¡Es ideal para descansar!"
+  "invitados": {
+    "marcela_gonzalez": {
+      "nombre": "Marcela González",
+      "deQuienEs": "Sergio",
+      "confirmacion": null,
+      "restriccionAlimenticia": null,
+      "updatedAt": null
     },
-    "XJ92LKP4": {
-      "guestName": "Andrés",
-      "welcomeMessage": "Andrés, gracias por ser parte de esta celebración con nosotros.",
-      "numGuests": 1,
-      "plusOne": false,
-      "stayRecommendation": "Hay una cabaña reservada para ti en la Viña Marchigüe."
+    "juan_perez": {
+      "nombre": "Juan Pérez",
+      "deQuienEs": "Valentina",
+      "confirmacion": null,
+      "restriccionAlimenticia": null,
+      "updatedAt": null
+    },
+    "paula_rojas": {
+      "nombre": "Paula Rojas",
+      "deQuienEs": "Sergio",
+      "confirmacion": null,
+      "restriccionAlimenticia": null,
+      "updatedAt": null
     }
   }
-  
+}

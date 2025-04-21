@@ -24,8 +24,8 @@ export default function DressCode() {
           <Image
             src="/img/dresscode.avif"
             alt="Dresscode ejemplo"
-            width={180}
-            height={160}
+            width={380}
+            height={360}
             priority
             className="rounded-xl shadow-md w-auto h-auto max-w-full"
           />
