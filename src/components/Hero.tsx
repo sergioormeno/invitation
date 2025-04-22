@@ -1,14 +1,12 @@
-// Archivo: components/hero.tsx (optimizado con parallax sin salto visual en mobile)
+// Archivo: components/hero.tsx (sin parallax para probar estabilidad en mobile)
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 
 export default function HeroSection() {
   const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [clientReady, setClientReady] = useState(false);
 
@@ -30,10 +28,7 @@ export default function HeroSection() {
       className={`relative min-h-[100svh] h-[100svh] w-full flex items-center justify-center overflow-hidden px-4 md:px-8 transition-opacity duration-700 ${imageLoaded && clientReady ? "opacity-100" : "opacity-0"}`}
     >
       {/* Imagen de fondo absoluta */}
-      <motion.div
-        className="absolute inset-0 z-0 will-change-transform"
-        style={{ y }}
-      >
+      <div className="absolute inset-0 z-0">
         {imageLoaded && (
           <Image
             src="/img/loves.avif"
@@ -45,7 +40,7 @@ export default function HeroSection() {
           />
         )}
         <div className="absolute inset-0 bg-[var(--color-text)]/20" />
-      </motion.div>
+      </div>
 
       <motion.div
         className="relative z-10 text-center space-y-4 max-w-3xl"
