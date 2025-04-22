@@ -1,18 +1,15 @@
 "use client";
 
-import { useEffect } from "react";
+import CustomSelect from "@/components/min/CustomSelect";
 
 interface Props {
   restriccion: string;
   setRestriccion: (value: string) => void;
-
   permitePlusOne: boolean;
   llevaPlusOne: boolean;
   setLlevaPlusOne: (value: boolean) => void;
-
   plusOneNombre: string;
   setPlusOneNombre: (value: string) => void;
-
   plusOneRestriccion: string;
   setPlusOneRestriccion: (value: string) => void;
 }
@@ -38,27 +35,17 @@ export default function ConfirmRestrictionForm({
   setPlusOneRestriccion,
 }: Props) {
   return (
-    <div className="space-y-6 text-left mt-4">
-      {/* Restricción titular */}
-      <div>
-        <label className="block mb-1 font-medium">
-          Tu restricción alimenticia
-        </label>
-        <select
-          className="w-full border rounded px-4 py-2"
-          value={restriccion}
-          onChange={(e) => setRestriccion(e.target.value)}
-        >
-{opcionesRestriccion.map((op, idx) => (
-  <option key={`${op}-${idx}`} value={op}>{op}</option>
-))}
-        </select>
-      </div>
+    <div className="space-y-6 text-left">
+      <CustomSelect
+        label="Tu restricción alimenticia"
+        options={opcionesRestriccion}
+        selected={restriccion}
+        setSelected={setRestriccion}
+      />
 
-      {/* +1 */}
       {permitePlusOne && (
         <div className="space-y-2">
-          <label className="flex items-center gap-2">
+          <label className="flex items-center gap-2 text-[var(--color-white)]">
             <input
               type="checkbox"
               checked={llevaPlusOne}
@@ -69,26 +56,25 @@ export default function ConfirmRestrictionForm({
 
           {llevaPlusOne && (
             <>
-              <label className="block mt-2">Nombre del acompañante (opcional)</label>
-              <input
-                type="text"
-                className="w-full border rounded px-4 py-2"
-                value={plusOneNombre}
-                onChange={(e) => setPlusOneNombre(e.target.value)}
-              />
+<label className="block mt-2 text-sm font-medium text-[var(--color-white)]">
+  Nombre del acompañante (opcional)
+</label>
+<input
+  type="text"
+  className="w-full bg-white border border-gray-300 rounded px-4 py-2 text-[var(--color-text)] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
+  value={plusOneNombre}
+  onChange={(e) => setPlusOneNombre(e.target.value)}
+  placeholder="Ej: Camila"
+/>
 
-              <label className="block mt-3 mb-1 font-medium">
-                Restricción alimenticia del acompañante
-              </label>
-              <select
-                className="w-full border rounded px-4 py-2"
-                value={plusOneRestriccion}
-                onChange={(e) => setPlusOneRestriccion(e.target.value)}
-              >
-                {opcionesRestriccion.map((op, idx) => (
-  <option key={`${op}-${idx}`} value={op}>{op}</option>
-))}
-              </select>
+
+
+              <CustomSelect
+                label="Restricción alimenticia del acompañante"
+                options={opcionesRestriccion}
+                selected={plusOneRestriccion}
+                setSelected={setPlusOneRestriccion}
+              />
             </>
           )}
         </div>
