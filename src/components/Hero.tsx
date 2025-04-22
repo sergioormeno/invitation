@@ -1,12 +1,14 @@
-// Archivo: components/hero.tsx (sin parallax para probar estabilidad en mobile)
+// Archivo: components/hero.tsx (reincorpora parallax sin uso de fill para evitar saltos en mobile)
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 
 export default function HeroSection() {
   const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [clientReady, setClientReady] = useState(false);
 
@@ -27,20 +29,27 @@ export default function HeroSection() {
       ref={ref}
       className={`relative min-h-[100svh] h-[100svh] w-full flex items-center justify-center overflow-hidden px-4 md:px-8 transition-opacity duration-700 ${imageLoaded && clientReady ? "opacity-100" : "opacity-0"}`}
     >
-      {/* Imagen de fondo absoluta */}
-      <div className="absolute inset-0 z-0">
+      {/* Imagen de fondo absoluta con parallax */}
+      <motion.div
+        className="absolute inset-0 z-0 will-change-transform"
+        style={{ y }}
+      >
         {imageLoaded && (
-          <Image
-            src="/img/loves.avif"
-            alt="Sergio y Valentina fondo"
-            fill
-            priority
-            quality={90}
-            className="object-cover"
-          />
+          <div className="relative w-screen h-[100svh]">
+            <Image
+              src="/img/loves.avif"
+              alt="Sergio y Valentina fondo"
+              fill={false}
+              priority
+              quality={90}
+              className="object-cover w-full h-full absolute top-0 left-0"
+              width={1920}
+              height={1080}
+            />
+          </div>
         )}
         <div className="absolute inset-0 bg-[var(--color-text)]/20" />
-      </div>
+      </motion.div>
 
       <motion.div
         className="relative z-10 text-center space-y-4 max-w-3xl"
