@@ -1,4 +1,4 @@
-// Archivo: components/hero.tsx (corregido para evitar salto visual inicial en mobile)
+// Archivo: components/hero.tsx (optimizado con parallax sin salto visual en mobile)
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -8,10 +8,12 @@ import Image from "next/image";
 export default function HeroSection() {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [clientReady, setClientReady] = useState(false);
 
   useEffect(() => {
+    setClientReady(true);
     const preloadImage = new window.Image();
     preloadImage.src = "/img/loves.avif";
     preloadImage.onload = () => {
@@ -25,10 +27,13 @@ export default function HeroSection() {
     <section
       data-hero
       ref={ref}
-      className={`relative min-h-[100svh] flex items-center justify-center overflow-hidden px-4 md:px-8 transition-opacity duration-500 ${imageLoaded ? "opacity-100" : "opacity-0"}`}
+      className={`relative min-h-[100svh] h-[100svh] w-full flex items-center justify-center overflow-hidden px-4 md:px-8 transition-opacity duration-700 ${imageLoaded && clientReady ? "opacity-100" : "opacity-0"}`}
     >
       {/* Imagen de fondo absoluta */}
-      <motion.div className="absolute inset-0 z-0" style={{ y }}>
+      <motion.div
+        className="absolute inset-0 z-0 will-change-transform"
+        style={{ y }}
+      >
         {imageLoaded && (
           <Image
             src="/img/loves.avif"
@@ -56,8 +61,8 @@ export default function HeroSection() {
           <Image
             src="/img/herologo.avif"
             alt="Vale & Sergio"
-            width={600}
-            height={200}
+            width={280}
+            height={120}
             priority
             className="w-[280px] sm:w-[320px] md:w-[400px] lg:w-[480px] h-auto max-w-full"
           />
