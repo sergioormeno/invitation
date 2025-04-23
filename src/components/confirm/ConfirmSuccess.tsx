@@ -36,7 +36,11 @@ export default function ConfirmSuccess({
           className="w-32 h-32 mx-auto"
         />
         ) : (
-          <XCircle className="w-10 h-10 text-[var(--color-muted)]" />
+          <img
+          src="/img/sad.avif"
+          alt="Sad"
+          className="w-32 h-32 mx-auto"
+        />
         )}
       </div>
 

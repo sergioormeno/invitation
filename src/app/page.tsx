@@ -13,8 +13,10 @@ import { Suspense } from "react";
 import ConfirmAttendanceSection from "@/components/AttendanceConfirm";
 import LoadingHeart from "@/components/min/LoadingCute";
 import { InvitadoProvider } from "@/context/InvitadoContext";
+import { useSearchParams } from "next/navigation";
 
 export default function Home() {
+ 
   return (
     <div className="min-h-screen w-full bg-[var(--color-bg)] text-[var(--color-text)] font-sans">
       {/* Hero con imagen de fondo */}
@@ -30,7 +32,7 @@ export default function Home() {
       <Suspense fallback={<div className="text-center py-12"><LoadingHeart /></div>}>
         <section style={{ contentVisibility: "auto", containIntrinsicSize: "600px" }}>
           <InvitadoProvider>
-            <Location />
+              <Location />
           </InvitadoProvider>
         </section>
       </Suspense>
@@ -45,7 +47,7 @@ export default function Home() {
       <Suspense fallback={<div className="text-center py-12"><LoadingHeart /></div>}>
         <section style={{ contentVisibility: "auto", containIntrinsicSize: "600px" }}>
           <InvitadoProvider>
-            <ConfirmAttendanceSection />
+              <ConfirmAttendanceSection />
           </InvitadoProvider>
         </section>
       </Suspense>

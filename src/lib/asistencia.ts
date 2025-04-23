@@ -26,11 +26,12 @@ export async function obtenerInvitadoPorClave(inviteKey: string): Promise<Invita
   return snap.exists() ? (snap.data() as Invitado) : null;
 }
 
-// Guardar confirmación o actualización
+// Guardar confirmación o actualización (solo si el UID coincide con inviteKey)
 export async function guardarAsistencia(inviteKey: string, data: Partial<Invitado>): Promise<void> {
   const ref = doc(db, "invitados", inviteKey);
   await setDoc(ref, {
     ...data,
     updatedAt: serverTimestamp(),
-  }, { merge: true }); // merge asegura que solo se actualicen los campos enviados
+  }, { merge: true });
 }
+

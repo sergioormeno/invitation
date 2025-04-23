@@ -1,13 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MapPin } from "lucide-react";
+import Image from "next/image";
 import { useInvitado } from "@/context/InvitadoContext";
 
 export default function Location() {
-  const { valido, loading } = useInvitado();
+  const { invitado, loading, valido } = useInvitado();
 
-  if (loading || !valido) return null;
+  if (loading || !valido || !invitado) return null;
 
   return (
     <section className="w-full bg-[var(--color-bg)] text-[var(--color-text)] spectral-semibold py-16 px-4">
@@ -18,7 +18,14 @@ export default function Location() {
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
       >
-        <MapPin className="w-10 h-10 text-[var(--color-accent)] mb-2" />
+        <Image
+          src="/img/map.avif"
+          alt=""
+          width={80}
+          height={60}
+          priority
+          className="w-auto h-auto max-w-full mb-2"
+        />
         <h2 className="text-3xl font-bold mb-2">Detalles del Evento</h2>
         <div className="w-16 h-[2px] bg-[var(--color-accent)] rounded-full mb-4"></div>
       </motion.div>
@@ -30,7 +37,7 @@ export default function Location() {
         transition={{ duration: 0.6, delay: 0.1 }}
         viewport={{ once: true }}
       >
-La ceremonia y la recepción se llevará a cabo en el bosque del Hotel Mantagua Village, Seguido de una fiesta en el mismo hotel en el salon principal ¡Nos encantaría que nos acompañes!
+        La ceremonia se llevará a cabo en la iglesia Nuestra Señora de las Flores a las 17:00 hrs, seguida de una recepción en el salón principal. ¡Nos encantaría que nos acompañes!
       </motion.p>
 
       <div className="flex flex-col md:flex-row gap-12 items-center justify-center">
@@ -41,8 +48,8 @@ La ceremonia y la recepción se llevará a cabo en el bosque del Hotel Mantagua 
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          <p className="text-lg md:text-xl">📍 Hotel Mantagua Village</p>
-          <p className="text-base mt-2">Ruta Concon hacia Quintero - F-30-E, Concón, Quintero, Valparaíso</p>
+          <p className="text-lg md:text-xl">📍 Hotel Viña La Playa</p>
+          <p className="text-base mt-2">Camino La Viña s/n, Santa Cruz, O'Higgins, Chile</p>
           <p className="text-base mt-4">Ceremonia: 17:00 hrs • Recepción posterior</p>
         </motion.div>
 
@@ -54,7 +61,7 @@ La ceremonia y la recepción se llevará a cabo en el bosque del Hotel Mantagua 
           viewport={{ once: true }}
         >
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3349.878557092999!2d-71.50087599999999!3d-32.901379000000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9689de0a77f3ab41%3A0x21076ba5795f2b89!2sMantagua%20Village%20Hotel%20%26%20Caba%C3%B1as!5e0!3m2!1ses-419!2scl!4v1744902454248!5m2!1ses-419!2scl"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3290.075851774501!2d-71.38557512254602!3d-34.450222373009815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x96638a06c3c451bb%3A0x27b4abb8e5edd0a2!2sHotel%20Vi%C3%B1a%20La%20Playa!5e0!3m2!1ses-419!2scl!4v1743819932190!5m2!1ses-419!2scl"
             width="100%"
             height="380"
             className="rounded-xl w-full"

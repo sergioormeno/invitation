@@ -82,109 +82,109 @@ export default function ConfirmAttendanceSection() {
   if (!valido || !invitado) return null;
 
   return (
-<section className="w-full py-16 px-4 bg-[var(--color-deep)] text-[var(--color-bg)] relative spectral-semibold">
-  <CuteBG />
+    <section className="w-full py-16 px-4 bg-[var(--color-deep)] text-[var(--color-bg)] relative spectral-semibold">
+      <CuteBG />
 
-  <motion.div
-    initial={{ opacity: 0, y: 60 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.6 }}
-    viewport={{ once: true }}
-    className="max-w-2xl mx-auto"
-  >
-    <h2 className="text-3xl font-bold mb-4 text-center text-[var(--color-bg)]">
-      Confirma tu Asistencia
-    </h2>
-    <p className=" text-center mb-6 text-[var(--color-bg)] subtitle">
-      Puedes confirmar hasta el <strong>10 de diciembre de 2025</strong>
-    </p>
-
-    {loading && <LoadingHeart message="Guardando tu confirmación..." />}
-
-    {!loading && estaFueraDePlazo ? (
-      <div className="mt-8 space-y-4 bg-white/10 p-6 rounded-lg shadow-md text-center">
-        <h3 className="text-xl font-semibold text-[var(--color-bg)]">
-          El tiempo de confirmación ha finalizado
-        </h3>
-        <p className="text-sm text-[var(--color-muted)]">
-          Gracias a quienes confirmaron. ¡Nos vemos (o nos pensamos con cariño)! 💌
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="max-w-2xl mx-auto"
+      >
+        <h2 className="text-3xl font-bold mb-4 text-center text-[var(--color-bg)]">
+          Confirma tu Asistencia
+        </h2>
+        <p className=" text-center mb-6 text-[var(--color-bg)] subtitle">
+          Puedes confirmar hasta el <strong>10 de diciembre de 2025</strong>
         </p>
-      </div>
-    ) : (
-      <AnimatePresence mode="wait">
-        {!loading && (estado === null || modoEdicion) && !mostrarFormulario && (
-          <motion.div
-            key="botones-iniciales"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            className="flex flex-col md:flex-row justify-center gap-4 mt-4"
-          >
-            <button onClick={() => setMostrarFormulario(true)} className="btn-primary">
-              Sí, asistiré
-            </button>
-            <button onClick={() => setMostrarModalFinal("no_asiste")} className="btn-secondary">
-              No podré ir
-            </button>
-          </motion.div>
-        )}
 
-        {mostrarFormulario && (
-          <motion.div
-            key="formulario"
-            className="mt-8 bg-white/10 p-6 rounded-lg shadow-md backdrop-blur-sm"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-          >
-            <ConfirmRestrictionForm
-              restriccion={restriccion}
-              setRestriccion={setRestriccion}
-              permitePlusOne={invitado.permitePlusOne ?? false}
-              llevaPlusOne={llevaPlusOne}
-              setLlevaPlusOne={setLlevaPlusOne}
-              plusOneNombre={plusOneNombre}
-              setPlusOneNombre={setPlusOneNombre}
-              plusOneRestriccion={plusOneRestriccion}
-              setPlusOneRestriccion={setPlusOneRestriccion}
-            />
-            <button onClick={() => setMostrarModalFinal("asiste")} className="btn-primary mt-6">
-              Confirmar esta opción
-            </button>
-          </motion.div>
-        )}
+        {loading && <LoadingHeart message="Guardando tu confirmación..." />}
 
-        {estado && !modoEdicion && (
-          <motion.div key="confirmado" className="mt-8">
-            <ConfirmSuccess
-              estado={estado}
-              nombre={nombre}
-              permitePlusOne={invitado?.permitePlusOne}
-              plusOneAsiste={invitado?.plusOneAsiste}
-              plusOneNombre={invitado?.plusOneNombre}
-              plusOneRestriccion={invitado?.plusOneRestriccion}
-              onEditar={() => setModoEdicion(true)}
-            />
-          </motion.div>
-        )}
+        {!loading && estaFueraDePlazo ? (
+          <div className="mt-8 space-y-4 bg-white/10 p-6 rounded-lg shadow-md text-center">
+            <h3 className="text-xl font-semibold text-[var(--color-bg)]">
+              El tiempo de confirmación ha finalizado
+            </h3>
+            <p className="text-sm text-[var(--color-muted)]">
+              Gracias a quienes confirmaron. ¡Nos vemos (o nos pensamos con cariño)! 💌
+            </p>
+          </div>
+        ) : (
+          <AnimatePresence mode="wait">
+            {!loading && (estado === null || modoEdicion) && !mostrarFormulario && (
+              <motion.div
+                key="botones-iniciales"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                className="flex flex-col md:flex-row justify-center gap-4 mt-4"
+              >
+                <button onClick={() => setMostrarFormulario(true)} className="btn-primary">
+                  Sí, asistiré
+                </button>
+                <button onClick={() => setMostrarModalFinal("no_asiste")} className="btn-secondary">
+                  No podré ir
+                </button>
+              </motion.div>
+            )}
 
-        {mostrarModalFinal && (
-          <motion.div key="modal">
-            <ConfirmModal
-              tipo={mostrarModalFinal}
-              nombre={nombre}
-              onClose={() => setMostrarModalFinal(false)}
-              onConfirm={
-                mostrarModalFinal === "asiste"
-                  ? manejarGuardar
-                  : manejarConfirmacionNegativa
-              }
-            />
-          </motion.div>
+            {mostrarFormulario && (
+              <motion.div
+                key="formulario"
+                className="mt-8 bg-white/10 p-6 rounded-lg shadow-md backdrop-blur-sm"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+              >
+                <ConfirmRestrictionForm
+                  restriccion={restriccion}
+                  setRestriccion={setRestriccion}
+                  permitePlusOne={invitado.permitePlusOne ?? false}
+                  llevaPlusOne={llevaPlusOne}
+                  setLlevaPlusOne={setLlevaPlusOne}
+                  plusOneNombre={plusOneNombre}
+                  setPlusOneNombre={setPlusOneNombre}
+                  plusOneRestriccion={plusOneRestriccion}
+                  setPlusOneRestriccion={setPlusOneRestriccion}
+                />
+                <button onClick={() => setMostrarModalFinal("asiste")} className="btn-primary mt-6">
+                  Confirmar esta opción
+                </button>
+              </motion.div>
+            )}
+
+            {estado && !modoEdicion && (
+              <motion.div key="confirmado" className="mt-8">
+                <ConfirmSuccess
+                  estado={estado}
+                  nombre={nombre}
+                  permitePlusOne={invitado?.permitePlusOne}
+                  plusOneAsiste={invitado?.plusOneAsiste}
+                  plusOneNombre={invitado?.plusOneNombre}
+                  plusOneRestriccion={invitado?.plusOneRestriccion}
+                  onEditar={() => setModoEdicion(true)}
+                />
+              </motion.div>
+            )}
+
+            {mostrarModalFinal && (
+              <motion.div key="modal">
+                <ConfirmModal
+                  tipo={mostrarModalFinal}
+                  nombre={nombre}
+                  onClose={() => setMostrarModalFinal(false)}
+                  onConfirm={
+                    mostrarModalFinal === "asiste"
+                      ? manejarGuardar
+                      : manejarConfirmacionNegativa
+                  }
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
         )}
-      </AnimatePresence>
-    )}
-  </motion.div>
-</section>
+      </motion.div>
+    </section>
   );
 }
