@@ -36,17 +36,21 @@ export default function GiftSection() {
         viewport={{ once: true }}
       >
         <div className="flex justify-center">
-          <Gift className="w-10 h-10 text-[var(--color-accent)]" />
+        <img
+          src="/img/gift.avif"
+          alt="Celebración"
+          className="w-28 h-32 mx-auto"
+        />
         </div>
-        <h2 className="text-3xl font-bold">Nuestra lista de deseos</h2>
+        <h2 className="text-3xl font-bold">Si deseas hacernos un regalo…</h2>
         <p className="text-lg">
           Tu compañía en nuestro gran día es lo que más valoramos. <br />
-          Si además quieres regalarnos algo, te dejamos las siguientes opciones:
+          Si ademas deseas apoyarnos en esta nueva etapa, aquí encontrarás algunas opciones que preparamos con mucho amor:
         </p>
 
         <div className="flex flex-col gap-4 items-center mt-6">
           {[
-            "Quiero regalar un deseo",
+            "Quiero regalar una experiencia",
             "Prefiero solo transferir",
             "Estoy complicado ahora pero voy a ser el alma de la fiesta",
           ].map((label, index) => (

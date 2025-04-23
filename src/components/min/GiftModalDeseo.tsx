@@ -39,7 +39,7 @@ export default function GiftModalDeseo() {
   return (
     <div className="flex flex-col md:flex-row gap-6 transition-all duration-300 ease-in-out">
       <div className="space-y-4 flex-1">
-        <h3 className="text-xl font-semibold">Elige un deseo para ayudarnos a cumplir</h3>
+        <h3 className="text-xl font-semibold">Elige una experiencia que deseas regalarnos</h3>
         <ul className="space-y-2">
           {deseos.map((d, i) => (
             <li

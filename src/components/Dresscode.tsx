@@ -14,10 +14,11 @@ export default function DressCode() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         viewport={{ once: true }}
       >
-        <h2 className="text-3xl font-bold uppercase">Dresscode</h2>
+        <h2 className="text-3xl font-bold">Dresscode</h2>
 
         <p className="text-xl font-medium">
-          Look formal elegante (pero se aceptan zapatillas 🥂)
+        Look formal elegante pero con zapatos comodos😉.<br/>
+          Te dejamos algunos de nuestros colores favoritos para que lo consideres en los detalles (una corbata o un pañuelo)
         </p>
 
         <div className="flex justify-center">
@@ -27,7 +28,7 @@ export default function DressCode() {
             width={380}
             height={360}
             priority
-            className="rounded-xl shadow-md w-auto h-auto max-w-full"
+            className="w-auto h-auto max-w-full"
           />
         </div>
       </motion.div>

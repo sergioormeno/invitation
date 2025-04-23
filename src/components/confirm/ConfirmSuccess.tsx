@@ -30,7 +30,11 @@ export default function ConfirmSuccess({
     >
       <div className="flex justify-center mb-4">
         {estado === "asiste" ? (
-          <PartyPopper className="w-12 h-12 text-[var(--color-accent)] " />
+          <img
+          src="/img/pop.avif"
+          alt="Celebración"
+          className="w-32 h-32 mx-auto"
+        />
         ) : (
           <XCircle className="w-10 h-10 text-[var(--color-muted)]" />
         )}
@@ -38,8 +42,8 @@ export default function ConfirmSuccess({
 
       <h3 className="text-2xl font-bold mb-4">
         {estado === "asiste"
-          ? `¡Gracias por confirmar, ${nombre}! Te esperamos con muchas ganas 🎊`
-          : `Lamentamos que no puedas venir, ${nombre}. ¡Gracias por avisarnos! 💌`}
+          ? `¡Gracias por confirmar, ${nombre}! Te esperamos con muchas ganas`
+          : `Lamentamos que no puedas venir, ${nombre}. ¡Gracias por avisarnos!`}
       </h3>
 
       {estado === "asiste" && permitePlusOne && plusOneAsiste && (
@@ -55,7 +59,7 @@ export default function ConfirmSuccess({
       <div className="mt-6 flex justify-center">
         <button
           onClick={onEditar}
-          className="underline text-sm text-[var(--color-accent)] hover:text-white transition"
+          className="underline text-md text-[var(--color-white)] hover:text-[var(--color-accent)] transition"
         >
           ¿Cambiaste de parecer? Haz clic aquí para modificar tu confirmación
         </button>
