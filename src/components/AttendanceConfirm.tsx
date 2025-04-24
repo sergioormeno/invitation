@@ -30,7 +30,6 @@ export default function ConfirmAttendanceSection() {
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [mostrarModalFinal, setMostrarModalFinal] = useState<"asiste" | "no_asiste" | false>(false);
   const [loading, setLoading] = useState(false);
-  const [confirmacionLocal, setConfirmacionLocal] = useState(invitado?.confirmacion ?? null);
 
   const nombre = invitado?.nombre?.split(" ")[0] ?? "Invitado";
   const estaFueraDePlazo = new Date() > fechaLimite;
@@ -38,7 +37,6 @@ export default function ConfirmAttendanceSection() {
   useEffect(() => {
     if (invitado) {
       setEstado(invitado.confirmacion ?? null);
-      setConfirmacionLocal(invitado.confirmacion ?? null);
       setRestriccion(invitado.restriccionAlimenticia ?? "Ninguna");
       if (invitado.permitePlusOne) {
         setLlevaPlusOne(invitado.plusOneAsiste ?? false);
@@ -48,12 +46,28 @@ export default function ConfirmAttendanceSection() {
     }
   }, [invitado]);
 
-  const manejarGuardar = async () => {
+  const actualizarConfirmacion = async (tipo: "asiste" | "no_asiste", payload?: Partial<Invitado>) => {
     if (!inviteKey) return;
     setLoading(true);
 
+    await guardarAsistencia(inviteKey, {
+      confirmacion: tipo,
+      ...(payload ?? {}),
+    });
+
+    const snap = await getDoc(doc(db, "invitados", inviteKey));
+    if (snap.exists()) {
+      const actualizado = snap.data() as Invitado;
+      setEstado(actualizado.confirmacion ?? null);
+    }
+
+    setLoading(false);
+    setMostrarFormulario(false);
+    setModoEdicion(false);
+  };
+
+  const manejarGuardar = async () => {
     const payload: Partial<Invitado> = {
-      confirmacion: "asiste",
       restriccionAlimenticia: restriccion,
     };
 
@@ -63,42 +77,11 @@ export default function ConfirmAttendanceSection() {
       payload.plusOneRestriccion = llevaPlusOne ? plusOneRestriccion : "";
     }
 
-    await guardarAsistencia(inviteKey, payload);
-
-    const snap = await getDoc(doc(db, "invitados", inviteKey));
-    if (snap.exists()) {
-      const actualizado = snap.data() as Invitado;
-      if (actualizado.confirmacion) {
-        setEstado(actualizado.confirmacion);
-        setConfirmacionLocal(actualizado.confirmacion);
-      }
-    }
-
-    setLoading(false);
-    setMostrarFormulario(false);
-    setMostrarModalFinal(false);
-    setModoEdicion(false);
+    await actualizarConfirmacion("asiste", payload);
   };
 
   const manejarConfirmacionNegativa = async () => {
-    if (!inviteKey) return;
-    setLoading(true);
-
-    await guardarAsistencia(inviteKey, { confirmacion: "no_asiste" });
-
-    const snap = await getDoc(doc(db, "invitados", inviteKey));
-    if (snap.exists()) {
-      const actualizado = snap.data() as Invitado;
-      if (actualizado.confirmacion) {
-        setEstado(actualizado.confirmacion);
-        setConfirmacionLocal(actualizado.confirmacion);
-      }
-    }
-
-    setLoading(false);
-    setMostrarFormulario(false);
-    setMostrarModalFinal(false);
-    setModoEdicion(false);
+    await actualizarConfirmacion("no_asiste");
   };
 
   if (loadingInvitado) return <LoadingHeart message="Cargando invitación..." />;
@@ -198,11 +181,13 @@ export default function ConfirmAttendanceSection() {
                     tipo={mostrarModalFinal}
                     nombre={nombre}
                     onClose={() => setMostrarModalFinal(false)}
-                    onConfirm={
-                      mostrarModalFinal === "asiste"
-                        ? manejarGuardar
-                        : manejarConfirmacionNegativa
-                    }
+                    onConfirm={async () => {
+                      if (mostrarModalFinal === "asiste") {
+                        await manejarGuardar();
+                      } else {
+                        await manejarConfirmacionNegativa();
+                      }
+                    }}
                   />
                 </motion.div>
               )}
@@ -211,8 +196,7 @@ export default function ConfirmAttendanceSection() {
         </motion.div>
       </section>
 
-      {/* Sección de canciones visible solo si confirmación === "asiste" */}
-      <SongRequestForm confirmacion={confirmacionLocal} />
+      {estado === "asiste" && <SongRequestForm confirmacion="asiste" />}
     </>
   );
 }

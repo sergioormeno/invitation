@@ -52,6 +52,7 @@ export default function Home() {
           </InvitadoProvider>
         </section>
       </Suspense>
+      
       <footer className="text-center py-6 text-sm text-[var(--color-text)]">
         <p>© 2025 Sergio & Valentina — ¡Nos vemos el gran día!</p>
       </footer>

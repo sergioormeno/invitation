@@ -13,12 +13,7 @@ interface ConfirmModalProps {
   onConfirm: () => Promise<void>;
 }
 
-export default function ConfirmModal({
-  tipo,
-  nombre,
-  onClose,
-  onConfirm,
-}: ConfirmModalProps) {
+export default function ConfirmModal({ tipo, nombre, onClose, onConfirm }: ConfirmModalProps) {
   const [mounted, setMounted] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -34,11 +29,17 @@ export default function ConfirmModal({
       ? `¿Estás seguro de que quieres confirmar tu asistencia, ${nombre}?`
       : `¿Confirmas que no podrás acompañarnos, ${nombre}?`;
 
-  const handleConfirm = async () => {
-    setLoading(true);
-    await onConfirm();
-    setLoading(false);
-  };
+      const handleConfirm = async () => {
+        setLoading(true);
+        try {
+          onClose();            
+          await onConfirm();   
+        } catch (err) {
+          console.error("Error al confirmar:", err);
+        } finally {
+          setLoading(false);
+        }
+      };
 
   return createPortal(
     <AnimatePresence>
