@@ -4,11 +4,11 @@ import { useState } from "react";
 import { Copy } from "lucide-react";
 
 const deseos = [
-  { label: "Cena romántica para dos", amount: 40000, link: "https://mpago.la/2CU4neH" },
-  { label: "Día de spa", amount: 60000, link: "https://mpago.la/2CU4neH" },
-  { label: "Excursión inolvidable", amount: 100000, link: "https://mpago.la/2CU4neH" },
-  { label: "Noche en hotel boutique", amount: 200000, link: "https://mpago.la/2CU4neH" },
-  { label: "Gran aventura soñada", amount: 400000, link: "https://mpago.la/2CU4neH" },
+  { label: "Cena romántica para dos", amount: 65000, link: "https://mpago.la/1mDrhkq" },
+  { label: "Día de spa", amount: 100000, link: "https://mpago.la/2vrDmai" },
+  { label: "Excursión inolvidable", amount: 120000, link: "https://mpago.la/2qsUXdz" },
+  { label: "Noche en hotel boutique", amount: 200000, link: "https://mpago.la/16xcLdw" },
+  { label: "Gran aventura soñada", amount: 400000, link: "https://mpago.la/1ywyh9S" },
 ];
 
 const datos = [
@@ -32,7 +32,7 @@ export default function GiftModalDeseo() {
   };
 
   const copiarTodosLosDatos = () => {
-    const texto = datos.map((d) => `${d.label}: ${d.value}`).join("\n");
+    const texto = datos.map((d) => `${d.value}`).join("\n");
     navigator.clipboard.writeText(texto);
   };
 
@@ -82,7 +82,7 @@ export default function GiftModalDeseo() {
             </div>
           </div>
 
-          <p className="text-sm">O bien puedes colaborar con tarjeta de crédito aquí:</p>
+          <p className="text-sm"><b>O bien puedes colaborar con tarjeta de crédito aquí:</b></p>
           <a
             href={deseos[selectedDeseo].link}
             target="_blank"
