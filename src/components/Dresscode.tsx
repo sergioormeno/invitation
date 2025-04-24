@@ -14,22 +14,24 @@ export default function DressCode() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         viewport={{ once: true }}
       >
-        <h2 className="text-3xl font-bold">Dresscode</h2>
-
+        <h2 className="text-3xl font-bold">Dress code</h2>
+        <img
+          src="/img/suitup.avif"
+          alt="dress code"
+          className="w-32 h-32 mx-auto"
+        />
         <p className="text-xl font-medium">
-        Look formal elegante pero con zapatos comodos😉.<br/>
-          Te dejamos algunos de nuestros colores favoritos para que lo consideres en los detalles (una corbata o un pañuelo)
+        Llenemos este día de colores, Look formal con un toque de color. Y por favor, no olvides tus zapatos más cómodos 😉.<br/>
+        Aquí te compartimos una paleta de colores que nos encanta, por si quieres sumarte a la armonía de nuestro día especial.
         </p>
 
         <div className="flex justify-center">
-          <Image
-            src="/img/dresscode.avif"
-            alt="Dresscode ejemplo"
-            width={380}
-            height={360}
-            priority
-            className="w-auto h-auto max-w-full"
-          />
+          
+        <img
+          src="/img/dresscode.avif"
+          alt="dress code"
+          className="w-56 h-18 mx-auto"
+        />
         </div>
       </motion.div>
     </section>

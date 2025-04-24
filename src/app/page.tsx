@@ -14,6 +14,7 @@ import ConfirmAttendanceSection from "@/components/AttendanceConfirm";
 import LoadingHeart from "@/components/min/LoadingCute";
 import { InvitadoProvider } from "@/context/InvitadoContext";
 import { useSearchParams } from "next/navigation";
+import SongRequestForm from "@/components/Spotify";
 
 export default function Home() {
  
@@ -51,7 +52,6 @@ export default function Home() {
           </InvitadoProvider>
         </section>
       </Suspense>
-
       <footer className="text-center py-6 text-sm text-[var(--color-text)]">
         <p>© 2025 Sergio & Valentina — ¡Nos vemos el gran día!</p>
       </footer>

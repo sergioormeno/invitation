@@ -27,11 +27,27 @@ export async function obtenerInvitadoPorClave(inviteKey: string): Promise<Invita
 }
 
 // Guardar confirmación o actualización (solo si el UID coincide con inviteKey)
-export async function guardarAsistencia(inviteKey: string, data: Partial<Invitado>): Promise<void> {
+export async function guardarAsistencia(
+  inviteKey: string,
+  data: Partial<Invitado>
+): Promise<Invitado | null> {
   const ref = doc(db, "invitados", inviteKey);
-  await setDoc(ref, {
-    ...data,
-    updatedAt: serverTimestamp(),
-  }, { merge: true });
-}
 
+  // Guarda la confirmación
+  await setDoc(
+    ref,
+    {
+      ...data,
+      updatedAt: serverTimestamp(),
+    },
+    { merge: true }
+  );
+
+  // Recupera el documento actualizado
+  const snap = await getDoc(ref);
+  if (snap.exists()) {
+    return snap.data() as Invitado;
+  }
+
+  return null;
+}

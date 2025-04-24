@@ -43,7 +43,7 @@ export function InvitadoProvider({ children }: { children: React.ReactNode }) {
   const [valido, setValido] = useState(false);
 
   useEffect(() => {
-    const cargar = async () => {
+    const cargarInvitado = async () => {
       if (!inviteKey) {
         setValido(false);
         setLoading(false);
@@ -57,13 +57,14 @@ export function InvitadoProvider({ children }: { children: React.ReactNode }) {
         setInvitado(snap.data() as Invitado);
         setValido(true);
       } else {
+        setInvitado(null);
         setValido(false);
       }
 
       setLoading(false);
     };
 
-    cargar();
+    cargarInvitado();
   }, [inviteKey]);
 
   return (
