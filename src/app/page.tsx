@@ -6,15 +6,12 @@ import HeroSection from "@/components/Hero";
 import Location from "@/components/Location";
 import ScrollButton from "@/components/Scroller";
 import DressCode from "@/components/Dresscode";
-import SpotifyPlaylistSection from "@/components/Spotify";
 import GallerySection from "@/components/Gallery";
 import GiftSection from "@/components/giftSection";
 import { Suspense } from "react";
 import ConfirmAttendanceSection from "@/components/AttendanceConfirm";
 import LoadingHeart from "@/components/min/LoadingCute";
 import { InvitadoProvider } from "@/context/InvitadoContext";
-import { useSearchParams } from "next/navigation";
-import SongRequestForm from "@/components/Spotify";
 
 export default function Home() {
  
