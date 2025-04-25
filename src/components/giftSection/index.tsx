@@ -27,9 +27,9 @@ export default function GiftSection() {
   }, []);
 
   return (
-    <section className="w-full spectral-semibold bg-[var(--color-bg)] text-[var(--color-text)] py-16 px-4 text-center">
+    <section className="w-full spectral-semibold bg-[var(--color-bg)] text-[var(--color-text)] py-24 px-4 text-center">
       <motion.div
-        className="max-w-3xl mx-auto space-y-6"
+        className="max-w-3xl mx-auto space-y-7"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}

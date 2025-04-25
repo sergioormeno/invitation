@@ -43,8 +43,11 @@ export default function Countdown() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         viewport={{ once: true }}
-      >
-        <h3 className="title text-3xl">Faltan...</h3>
+      >        <img
+      src="/img/timer.avif"
+      alt="dress code"
+      className="w-28 h-28 mx-auto"
+    />
         <div className="flex flex-wrap justify-center gap-1">
           {Object.entries(timeLeft).map(([unit, value]) => (
             <div key={unit} className="text-center flex flex-col items-center xs:min-w-[65px] sm:min-w-[80px]">
