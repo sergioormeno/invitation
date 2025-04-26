@@ -89,7 +89,7 @@ export default function GiftModalDeseo() {
             rel="noopener noreferrer"
             className="block btn-primary text-center"
           >
-            Regalar con Mercado Pago
+            Regalar con Tarjeta de Crédito
           </a>
         </div>
       )}
