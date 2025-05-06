@@ -1,4 +1,3 @@
-// Archivo: components/dresscode.tsx (actualizado con imagen personalizada)
 "use client";
 
 import { motion } from "framer-motion";
@@ -14,24 +13,19 @@ export default function DressCode() {
         viewport={{ once: true }}
       >
         <h2 className="text-3xl font-bold">Dress code</h2>
+
         <img
           src="/img/suitup.avif"
           alt="dress code"
           className="w-32 h-32 mx-auto"
-        /> <img
-        src="/img/dresscode.avif"
-        alt="dress code"
-        className="w-56 h-18 mx-auto"
-      />
-        <p className="text-xl font-medium">
-        Llenemos este día de colores con un look formal. Y por favor, no olvides tus zapatos más cómodos 😉.<br/>
-        Aquí te compartimos una paleta de colores que nos encanta, por si quieres sumarte a la armonía de nuestro día especial.
-        </p>
+        />
 
-        <div className="flex justify-center">
-          
-       
-        </div>
+        <p className="text-xl font-medium leading-relaxed">
+          Elige un look formal, lleno de color y alegría.
+          <br />
+          Si puedes evitar el negro y dejar el blanco para la novia te lo agradecemos 🤍.
+          <br />
+        </p>
       </motion.div>
     </section>
   );

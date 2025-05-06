@@ -37,7 +37,7 @@ export default function Location() {
         transition={{ duration: 0.6, delay: 0.1 }}
         viewport={{ once: true }}
       >
-        La ceremonia y la recepción se llevará a cabo en el bosque del Hotel Mantagua Village a las 17:00 hrs y la celebración será en el salon principal del Hotel. ¡Nos encantaría que nos acompañes!
+        Te invitamos a llegar a las 17:15 hrs para participar de una ceremonia en el bosque del Hotel Mantagua Village. ¡Nos encantaría que nos acompañes!
       </motion.p>
 
       <div className="flex flex-col md:flex-row gap-12 items-center justify-center">
