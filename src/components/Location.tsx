@@ -37,8 +37,7 @@ export default function Location() {
         transition={{ duration: 0.6, delay: 0.1 }}
         viewport={{ once: true }}
       >
-        Te invitamos a llegar a las 17:15 hrs para participar de una ceremonia en el bosque del Hotel Mantagua Village. ¡Nos encantaría que nos acompañes!
-      </motion.p>
+        La ceremonia se llevará a cabo en el bosque del Hotel Mantagua Village a las 17:15hrs. y la celebración será en el salon principal del Hotel. ¡Nos encantaría que nos acompañes!   </motion.p>
 
       <div className="flex flex-col md:flex-row gap-12 items-center justify-center">
         <motion.div
@@ -50,7 +49,6 @@ export default function Location() {
         >
           <p className="text-lg md:text-xl">Hotel Mantagua Village</p>
           <p className="text-base mt-2">Ruta Concon hacia Quintero - F-30-E, Concón, Quintero, Valparaíso</p>
-          <p className="text-base mt-4">Ceremonia: 18:00 hrs • Recepción posterior</p>
         </motion.div>
 
         <motion.div
