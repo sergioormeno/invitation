@@ -52,12 +52,20 @@ export default function Location() {
         </motion.div>
 
         <motion.div
-          className="w-full md:w-1/2"
+          className="w-full md:w-1/2 relative"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
         >
+          <a
+            href="https://www.google.com/maps/dir/?api=1&destination=Mantagua+Village+Hotel+%26+Cabañas,+Ruta+Concon+hacia+Quintero+-+F-30-E,+Concón,+Quintero"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute top-4 right-4 z-10 bg-[var(--color-accent)] text-white text-sm px-4 py-2 rounded shadow-md hover:bg-[var(--color-deep)] transition"
+          >
+            Cómo llegar
+          </a>
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3349.878557092999!2d-71.50087599999999!3d-32.901379000000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9689de0a77f3ab41%3A0x21076ba5795f2b89!2sMantagua%20Village%20Hotel%20%26%20Caba%C3%B1as!5e0!3m2!1ses-419!2scl!4v1745523708004!5m2!1ses-419!2scl"
             width="100%"
