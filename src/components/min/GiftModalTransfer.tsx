@@ -4,16 +4,17 @@ import { useState } from "react";
 import { Copy } from "lucide-react";
 
 const datos = [
-  { label: "Banco", value: "Banco Ejemplo" },
-  { label: "Nombre", value: "Sergio & Valentina" },
-  { label: "Cuenta", value: "123456789" },
-  { label: "Tipo", value: "Cuenta Corriente" },
-  { label: "RUT", value: "12.345.678-9" },
-  { label: "Email", value: "ejemplo@correo.com" },
+  { label: "Nombre", value: "Sergio Ignacio Ormeño Vargas" },
+  { label: "RUT", value: "17.957.689-9" },
+  { label: "Banco", value: "Mercado Pago" },
+  { label: "Tipo", value: "Cuenta Vista" },
+  { label: "Cuenta", value: "1019862364" },
+  { label: "Email", value: "sergioignacio.ov@gmail.com" },
 ];
 
 export default function GiftModalTransfer() {
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
+  const [allCopied, setAllCopied] = useState(false);
 
   const copiarTexto = (texto: string, index: number) => {
     navigator.clipboard.writeText(texto).then(() => {
@@ -23,8 +24,11 @@ export default function GiftModalTransfer() {
   };
 
   const copiarTodosLosDatos = () => {
-    const texto = datos.map((d) => `${d.label}: ${d.value}`).join("\n");
-    navigator.clipboard.writeText(texto);
+    const texto = datos.map((d) => `${d.value}`).join("\n");
+    navigator.clipboard.writeText(texto).then(() => {
+      setAllCopied(true);
+      setTimeout(() => setAllCopied(false), 1500);
+    });
   };
 
   return (
@@ -49,15 +53,21 @@ export default function GiftModalTransfer() {
           </div>
         ))}
 
-        <div className="flex justify-end pt-2">
-          <button
-            onClick={copiarTodosLosDatos}
-            className="text-[var(--color-text)] hover:text-[var(--color-accent)] transition"
-            title="Copiar todos los datos"
-          >
-            <Copy className="w-5 h-5" />
-          </button>
-        </div>
+      <div className="flex justify-end pt-2 relative">
+        <button
+          onClick={copiarTodosLosDatos}
+          className="text-[var(--color-text)] hover:text-[var(--color-accent)] transition"
+          title="Copiar todos los datos"
+        >
+          <Copy className="w-5 h-5" />
+        </button>
+
+        {allCopied && (
+          <div className="absolute -top-2 -right-2 bg-[var(--color-text)] text-white text-xs px-2 py-1 rounded shadow-md transition-opacity duration-300 z-10">
+            Se copiaron todos los datos
+          </div>
+        )}
+      </div>
       </div>
     </div>
   );

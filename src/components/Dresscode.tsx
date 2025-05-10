@@ -23,7 +23,7 @@ export default function DressCode() {
         <p className="text-xl font-medium leading-relaxed">
           Elige un look formal, lleno de color y alegría.
           <br />
-          Si puedes evitar el negro y dejar el blanco para la novia te lo agradecemos 🤍.
+          Si puedes evitar el negro y dejar el blanco para la novia te lo agradecemos 🤍
           <br />
         </p>
       </motion.div>
