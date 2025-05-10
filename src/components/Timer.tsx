@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function Countdown() {
   const calculateTimeLeft = () => {
-    const difference = +new Date("2026-01-01T17:00:00") - +new Date();
+    const difference = +new Date("2026-01-10T17:15:00") - +new Date();
     let timeLeft = {} as Record<string, number>;
 
     if (difference > 0) {

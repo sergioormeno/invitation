@@ -63,9 +63,9 @@ export default function SongRequestForm({ confirmacion }: SongRequestFormProps) 
           alt="dress code"
           className="w-32 h-32 mx-auto mb-4"
         />
-      <h2 className="text-3xl font-bold mb-4">Canciones que nos inspiran</h2>
+      <h2 className="text-3xl font-bold mb-4">Canciones que no pueden faltar</h2>
       <p className="subtitle mb-8">
-        Hemos creado una playlist colaborativa con temas que nos acompañan en este viaje. ¡Escúchala y agrega los tuyos más abajo!
+        Hemos creado una playlist colaborativa con los infaltables para este día. ¡Escúchala y agrega los tuyos más abajo!
       </p>
 
       <div className="flex justify-center mb-12">

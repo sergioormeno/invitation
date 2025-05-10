@@ -58,7 +58,7 @@ export default function HeroSection() {
         transition={{ duration: 1.2, ease: "easeOut" }}
       >
         <h2 className="text-2xl md:text-4xl text-white mb-8 font-bold font-cinzel-decorative">
-          ¡nos casamos!
+          ¡Nos casamos!
         </h2>
 
         <div className="flex justify-center">
@@ -73,7 +73,7 @@ export default function HeroSection() {
         </div>
 
         <h2 className="text-xl md:text-2xl text-white font-cinzel-decorative">
-          1 de enero de 2026 · Viña del Mar
+          10 de enero de 2026 · Mantagua
         </h2>
       </motion.div>
     </section>
