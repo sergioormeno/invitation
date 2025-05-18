@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const EVENT_DATE = new Date("2023-01-10T17:15:00");
+const EVENT_DATE = new Date("2026-01-10T17:15:00");
 
 export default function Countdown() {
   const calculateTimeLeft = () => {

@@ -1,12 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useInvitado } from "@/context/InvitadoContext";
 
 export default function Location() {
-  const { invitado, loading, valido } = useInvitado();
-
-  if (loading || !valido || !invitado) return null;
 
   return (
     <section className="w-full bg-white text-[var(--color-text)] spectral-semibold py-16 px-4">
@@ -34,6 +30,8 @@ export default function Location() {
         <p className="font-bold mb-2 mt-2">¡Nos encantaría que nos acompañes!</p>
       </motion.div>
 
+
+
       <motion.div
         className="text-center"
         initial={{ opacity: 0, y: 40 }}
@@ -41,7 +39,6 @@ export default function Location() {
         transition={{ duration: 0.6, delay: 0.4 }}
         viewport={{ once: true }}
       >
-
         <a
           href="https://www.google.com/maps/dir/?api=1&destination=Mantagua+Village+Hotel+%26+Cabañas,+Ruta+Concon+hacia+Quintero+-+F-30-E,+Concón,+Quintero"
           target="_blank"

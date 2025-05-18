@@ -12,6 +12,7 @@ import { Suspense } from "react";
 import ConfirmAttendanceSection from "@/components/AttendanceConfirm";
 import LoadingHeart from "@/components/min/LoadingCute";
 import { InvitadoProvider } from "@/context/InvitadoContext";
+import FriendlyMessage from "@/components/FriendlyMessage";
 
 export default function Home() {
  
@@ -23,13 +24,21 @@ export default function Home() {
       <Suspense fallback={<div className="text-center py-12"><LoadingHeart /></div>}>
         <CountdownTimer />
       </Suspense>
-     <Suspense fallback={<div className="text-center py-12"><LoadingHeart /></div>}>
+
         <section style={{ contentVisibility: "auto", containIntrinsicSize: "600px" }}>
-          <InvitadoProvider>
+
               <Location />
-          </InvitadoProvider>
+
         </section>
-      </Suspense>
+    
+        <section style={{ contentVisibility: "auto", containIntrinsicSize: "600px" }}>
+              <FriendlyMessage />
+        </section>
+
+
+
+
+
       <section style={{ contentVisibility: "auto", containIntrinsicSize: "800px" }}>
         <GallerySection />
       </section>

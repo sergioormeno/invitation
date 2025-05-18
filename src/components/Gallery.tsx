@@ -81,7 +81,7 @@ export default function GallerySection() {
         className="max-w-6xl mx-auto text-center space-y-8 mb-10"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.4 }}
         viewport={{ once: true }}
       >
       <h2 className="title">Nosotros</h2>
@@ -94,11 +94,11 @@ export default function GallerySection() {
 
         {/* Grilla con stagger */}
         <motion.div
-          className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-4 gap-4"
+          className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 gap-4"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.8 }} /* inicia antes para recorrido completo */
+          viewport={{ once: true, amount: 0.5 }} /* inicia antes para recorrido completo */
         >
           {images.map((src, index) => (
             <motion.div

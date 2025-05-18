@@ -19,7 +19,7 @@ const AnimatedCuteBG = () => (
 );
 
 export default function GiftSection() {
-  const [activeModal, setActiveModal] = useState<"transfer" | "deseo" | "mensaje" | null>(null);
+  const [activeModal, setActiveModal] = useState< "deseo" | "mensaje" | null>(null);
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -59,7 +59,7 @@ export default function GiftSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 * index, duration: 0.5 }}
-              onClick={() => setActiveModal(index === 0 ? "deseo" : index === 1 ? "transfer" : "mensaje")}
+              onClick={() => setActiveModal(index === 0 ? "deseo" : "mensaje")}
             >
               {label}
             </motion.button>
