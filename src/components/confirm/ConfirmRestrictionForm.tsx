@@ -18,9 +18,7 @@ const opcionesRestriccion = [
   "Ninguna",
   "Vegetariano",
   "Vegano",
-  "Sin gluten",
-  "Alérgico a frutos secos",
-  "Otra",
+  "Celíaco"
 ];
 
 export default function ConfirmRestrictionForm({

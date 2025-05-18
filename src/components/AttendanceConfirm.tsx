@@ -103,7 +103,7 @@ export default function ConfirmAttendanceSection() {
             Confirma tu Asistencia
           </h2>
           <p className=" text-center mb-6 text-[var(--color-bg)] subtitle">
-            Puedes confirmar hasta el <strong>10 de diciembre de 2025</strong>
+            Puedes confirmar hasta el <strong>10 de noviembre de 2025</strong>
           </p>
 
           {loading && <LoadingHeart message="Guardando tu confirmación..." />}

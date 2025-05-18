@@ -38,7 +38,7 @@ export default function GiftSection() {
         <div className="flex justify-center">
         <img
           src="/img/gift.avif"
-          alt="Celebración"
+          alt="Gift"
           className="w-28 h-32 mx-auto"
         />
         </div>
@@ -50,8 +50,7 @@ export default function GiftSection() {
 
         <div className="flex flex-col gap-4 items-center mt-6">
           {[
-            "Quiero regalar una experiencia",
-            "Prefiero solo transferir",
+            "Regalar con tarjeta o transferencia",
             "Estoy complicado ahora pero voy a ser el alma de la fiesta",
           ].map((label, index) => (
             <motion.button

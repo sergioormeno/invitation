@@ -23,17 +23,17 @@ export default function Home() {
       <Suspense fallback={<div className="text-center py-12"><LoadingHeart /></div>}>
         <CountdownTimer />
       </Suspense>
-
-      <section style={{ contentVisibility: "auto", containIntrinsicSize: "800px" }}>
-        <GallerySection />
-      </section>
-      <Suspense fallback={<div className="text-center py-12"><LoadingHeart /></div>}>
+     <Suspense fallback={<div className="text-center py-12"><LoadingHeart /></div>}>
         <section style={{ contentVisibility: "auto", containIntrinsicSize: "600px" }}>
           <InvitadoProvider>
               <Location />
           </InvitadoProvider>
         </section>
       </Suspense>
+      <section style={{ contentVisibility: "auto", containIntrinsicSize: "800px" }}>
+        <GallerySection />
+      </section>
+    
       <section style={{ contentVisibility: "auto", containIntrinsicSize: "600px" }}>
         <DressCode />
       </section>

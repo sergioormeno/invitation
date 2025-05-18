@@ -4,11 +4,13 @@ import { useState } from "react";
 import { Copy } from "lucide-react";
 
 const deseos = [
-  { label: "Cena romántica para dos", amount: 65000, link: "https://mpago.la/1mDrhkq" },
-  { label: "Día de spa", amount: 100000, link: "https://mpago.la/2vrDmai" },
-  { label: "Excursión inolvidable", amount: 120000, link: "https://mpago.la/2qsUXdz" },
-  { label: "Noche en hotel boutique", amount: 200000, link: "https://mpago.la/16xcLdw" },
-  { label: "Gran aventura soñada", amount: 400000, link: "https://mpago.la/1ywyh9S" },
+  { label: "Aporte para la luna de miel",link: "https://link.mercadopago.cl/matrivaleysergio" },
+  { label: "Aporte para vacaciones en familia",  link: "https://link.mercadopago.cl/matrivaleysergio" },
+  { label: "Aporte para renovar nuestra casita", link: "https://link.mercadopago.cl/matrivaleysergio" },
+  { label: "Aporte para cumplir un sueño",  link: "https://link.mercadopago.cl/matrivaleysergio" },
+  { label: "Aporte para nuestro futuro", link: "https://link.mercadopago.cl/matrivaleysergio" },
+  { label: "Aporte especial para los novios",  link: "https://link.mercadopago.cl/matrivaleysergio" },
+  
 ];
 
 const datos = [
@@ -43,15 +45,15 @@ export default function GiftModalDeseo() {
   return (
     <div className="flex flex-col md:flex-row gap-6 transition-all duration-300 ease-in-out">
       <div className="space-y-4 flex-1">
-        <h3 className="text-xl font-semibold">Elige una experiencia que deseas regalarnos</h3>
-        <ul className="space-y-2">
+        <h3 className="text-xl font-semibold">Elige que deseas regalarnos</h3>
+        <ul className="space-y-2 text-center text-lg">
           {deseos.map((d, i) => (
             <li
               key={i}
               className={`p-3 border rounded-md cursor-pointer transition ${selectedDeseo === i ? "bg-[var(--color-accent)] text-white" : "hover:bg-[var(--color-bg)]"}`}
               onClick={() => setSelectedDeseo(i)}
             >
-              {d.label} — ${d.amount.toLocaleString()} CLP
+              {d.label}
             </li>
           ))}
         </ul>
@@ -59,8 +61,8 @@ export default function GiftModalDeseo() {
 
       {selectedDeseo !== null && (
         <div className="space-y-4 flex-1">
-          <h4 className="text-lg font-semibold">Opciones para regalar</h4>
-          <div className="bg-[var(--color-bg)] p-4 rounded-md border text-sm space-y-2">
+          <h4 className="text-lg font-semibold">Datos para transferir</h4>
+          <div className="bg-[var(--color-bg)] p-4 rounded-md border text-md space-y-2">
             {datos.map((d, i) => (
               <div key={i} className="flex justify-between items-center">
                 <span className="text-left w-full"><strong>{d.label}:</strong> {d.value}</span>
