@@ -1,8 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useInvitado } from "@/context/InvitadoContext";
 
-export default function SoloAdultos() {
+export default function FriendlyMessage() {
+  const { invitado, loading, valido } = useInvitado();
+
+  if (loading || !valido || !invitado || !invitado.showOnlyAdults) return null;
+
+  const nombre = invitado?.nombre?.split(" ")[0] ?? "amig@" ;
+
   return (
     <section className="w-full bg-[#EDE5DC] text-[var(--color-deep)] spectral-semibold py-20 px-4">
       <motion.div
@@ -13,7 +20,8 @@ export default function SoloAdultos() {
         viewport={{ once: true }}
       >
         <p className="text-lg md:text-xl leading-relaxed">
-          Queremos que vivas esta experiencia de forma plena y sin preocupaciones. Por eso, la ceremonia y celebración están pensadas exclusivamente para adultos.
+          {nombre}, queremos que vivas esta experiencia de forma plena y sin preocupaciones. 
+          Por eso, la ceremonia y celebración están pensadas exclusivamente para adultos.
         </p>
         <p className="text-base md:text-lg text-[var(--color-text)]">
           ¡Gracias por comprenderlo con cariño!

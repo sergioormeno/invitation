@@ -15,7 +15,7 @@ import { InvitadoProvider } from "@/context/InvitadoContext";
 import FriendlyMessage from "@/components/FriendlyMessage";
 
 export default function Home() {
- 
+
   return (
     <div className="min-h-screen w-full bg-[var(--color-bg)] text-[var(--color-text)] font-sans">
       {/* Hero con imagen de fondo */}
@@ -25,15 +25,21 @@ export default function Home() {
         <CountdownTimer />
       </Suspense>
 
-        <section style={{ contentVisibility: "auto", containIntrinsicSize: "600px" }}>
+      <section style={{ contentVisibility: "auto", containIntrinsicSize: "600px" }}>
+        <Location />
+      </section>
 
-              <Location />
 
-        </section>
-    
+      <Suspense fallback={<div className="text-center py-12"><LoadingHeart /></div>}>
         <section style={{ contentVisibility: "auto", containIntrinsicSize: "600px" }}>
+          <InvitadoProvider>
+            <section style={{ contentVisibility: "auto", containIntrinsicSize: "600px" }}>
               <FriendlyMessage />
+            </section>
+          </InvitadoProvider>
         </section>
+      </Suspense>
+
 
 
 
@@ -42,7 +48,7 @@ export default function Home() {
       <section style={{ contentVisibility: "auto", containIntrinsicSize: "800px" }}>
         <GallerySection />
       </section>
-    
+
       <section style={{ contentVisibility: "auto", containIntrinsicSize: "600px" }}>
         <DressCode />
       </section>
@@ -54,11 +60,11 @@ export default function Home() {
       <Suspense fallback={<div className="text-center py-12"><LoadingHeart /></div>}>
         <section style={{ contentVisibility: "auto", containIntrinsicSize: "600px" }}>
           <InvitadoProvider>
-              <ConfirmAttendanceSection />
+            <ConfirmAttendanceSection />
           </InvitadoProvider>
         </section>
       </Suspense>
-      
+
       <footer className="text-center py-6 text-sm text-[var(--color-text)]">
         <p>© 2025 Sergio & Valentina — ¡Nos vemos el gran día!</p>
       </footer>

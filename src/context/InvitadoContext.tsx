@@ -14,6 +14,7 @@ export type Invitado = {
   plusOneNombre?: string;
   plusOneRestriccion?: string;
   permitePlusOne?: boolean;
+  showOnlyAdults?: boolean;
 };
 
 type ContextoInvitado = {
