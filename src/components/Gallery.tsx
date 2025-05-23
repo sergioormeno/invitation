@@ -98,7 +98,7 @@ export default function GallerySection() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }} /* inicia antes para recorrido completo */
+          viewport={{ once: true, amount: 0.2 }} /* inicia antes para recorrido completo */
         >
           {images.map((src, index) => (
             <motion.div
