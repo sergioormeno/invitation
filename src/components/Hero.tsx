@@ -2,8 +2,11 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, Suspense } from "react";
 import Image from "next/image";
+import { InvitadoProvider, useInvitado } from "@/context/InvitadoContext";
+import LoadingHeart from "./min/LoadingCute";
+import WelcomeMessage from "./WelcomeMessage";
 
 export default function HeroSection() {
   const ref = useRef(null);
@@ -11,6 +14,7 @@ export default function HeroSection() {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [clientReady, setClientReady] = useState(false);
+  const { invitado, loading, valido } = useInvitado(); 
 
   useEffect(() => {
     setClientReady(true);
@@ -75,7 +79,13 @@ export default function HeroSection() {
         <h2 className="text-xl md:text-2xl text-white font-cinzel-decorative">
           10 de enero de 2026 · Mantagua
         </h2>
+         <Suspense fallback={<div className="text-center"><LoadingHeart /></div>}>
+           <InvitadoProvider>
+               <WelcomeMessage />
+           </InvitadoProvider>
+         </Suspense>
       </motion.div>
+      
     </section>
   );
 }
