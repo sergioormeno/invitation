@@ -84,6 +84,9 @@ export default function HeroSection() {
         <h2 className="text-xl md:text-2xl text-white font-cinzel-decorative">
           10 de enero de 2026 · Mantagua
         </h2>
+        <div className="flex flex-col items-center mt-2">
+          <div className="w-16 h-[2px] bg-white rounded-full mb-2"></div>
+        </div>
       </motion.div>
       
     </section>
