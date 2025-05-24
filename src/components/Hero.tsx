@@ -61,6 +61,11 @@ export default function HeroSection() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
       >
+         <Suspense fallback={<div className="text-center"><LoadingHeart /></div>}>
+           <InvitadoProvider>
+               <WelcomeMessage />
+           </InvitadoProvider>
+         </Suspense>
         <h2 className="text-2xl md:text-4xl text-white mb-8 font-bold font-cinzel-decorative">
           ¡Nos casamos!
         </h2>
@@ -79,11 +84,6 @@ export default function HeroSection() {
         <h2 className="text-xl md:text-2xl text-white font-cinzel-decorative">
           10 de enero de 2026 · Mantagua
         </h2>
-         <Suspense fallback={<div className="text-center"><LoadingHeart /></div>}>
-           <InvitadoProvider>
-               <WelcomeMessage />
-           </InvitadoProvider>
-         </Suspense>
       </motion.div>
       
     </section>
